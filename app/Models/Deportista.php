@@ -93,7 +93,7 @@ class Deportista extends Model
         return [
             'id' => $this->id,
             'dni' => $this->cedula,
-            'sportman_number' => $this->numero_deportista,
+            'sportsman_number' => $this->numero_deportista,
             'address' => $this->provincia->provincia,
             'name' => $this->nombre,
             'lastname' => $this->apellido,
