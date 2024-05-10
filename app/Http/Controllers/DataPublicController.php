@@ -16,7 +16,7 @@ class DataPublicController extends Controller
     {
         try{
             $sportman = $this->dataService->get_sportman();
-            return response()->json(['atlethe'=>$sportman]);
+            return response()->json($sportman);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
         }
