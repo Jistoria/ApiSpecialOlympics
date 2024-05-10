@@ -14,7 +14,10 @@ class DataPublicService
 
     public function get_sportman()
     {
-        $sportman = $this->sportman->with(['provincia'])->get();
+        $sportman = $this->sportman->get();
+        $sportman = $sportman->map(function($item){
+            return $item->getAll();
+        });
         return $sportman;
     }
 

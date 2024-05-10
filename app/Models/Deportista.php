@@ -88,4 +88,20 @@ class Deportista extends Model
         return 'cedula'; // Utiliza 'cedula' como la clave de ruta en lugar de 'id'
     }
 
+    public function getAll()
+    {
+        return [
+            'id' => $this->id,
+            'dni' => $this->cedula,
+            'sportman_number' => $this->numero_deportista,
+            'address' => $this->provincia->provincia,
+            'name' => $this->nombre,
+            'lastname' => $this->apellido,
+            'age' => $this->edad,
+            'gender' => $this->genero,
+            'birthday' => $this->fecha_nacimiento->format($this->formato),
+            'img_url' => $this->url_imagen,
+            'state' => $this->activo,
+        ];
+    }
 }
