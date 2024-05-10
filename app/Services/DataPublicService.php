@@ -14,7 +14,7 @@ class DataPublicService
 
     public function get_sportman()
     {
-        $sportman = $this->sportman->paginate(10);
+        $sportman = $this->sportman->with(['provincia'])->get();
         return $sportman;
     }
 
