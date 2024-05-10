@@ -13,7 +13,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-class DeportistaImport implements ToModel, WithHeadingRow, WithBatchInserts, WithValidation
+class DeportistaImport implements ToModel, WithHeadingRow, WithValidation
 {
 
     /**
@@ -26,7 +26,7 @@ class DeportistaImport implements ToModel, WithHeadingRow, WithBatchInserts, Wit
         $provincia_id= Provincia::select('provincia_id')->where('provincia','LIKE',$row['provincia'])->first();
         $nameParts = explode(',',$row['name']);
         $apellido = ucwords(strtolower($nameParts[0]));
-        $name = $nameParts[1];
+        $name = strtr($nameParts[1],['_'=>' ']);
         $cedula = $row['cedula'];
         $fechaNacimiento = Carbon::createFromFormat('d/m/Y', $row['dob'])->format('Y-m-d');
 
@@ -42,23 +42,40 @@ class DeportistaImport implements ToModel, WithHeadingRow, WithBatchInserts, Wit
             'genero' => $row['gen'],
             'edad' => $row['age'],
             'fecha_nacimiento' => $fechaNacimiento,
-            'url_imagen' => "$apellido$name $cedula.jpg",
+            'url_imagen' => "images/$provincia_id->provincia_id/$apellido$name $cedula.jpg",
             'provincia_id' => $provincia_id->provincia_id,
         ]);
+    }
+    public function headingRow(): int
+    {
+        return 2;
     }
 
     public function rules(): array
     {
         return [
-            'name' => 'required|regex:/^[a-zA-Z,_\s]*$/',
-            'cedula' => ['required','string','size:10','unique:deportistas,cedula', new CedulaEcuatoriana],
+            'name' => 'required|regex:/^[a-zA-ZñÑ,_\s]*$/',
+            'cedula' => ['required','unique:deportistas,cedula'],
             'dob' => 'required|date_format:d/m/Y',
             'gen' => 'required|in:M,F',
             'age' => 'required|numeric',
         ];
     }
-    public function batchSize(): int
+
+    public function customValidationMessages()
     {
-        return 1000;
+        return [
+            'name.required' => 'El nombre es requerido',
+            'name.regex' => 'El nombre solo puede contener letras',
+            'cedula.required' => 'La cédula es requerida',
+            'cedula.unique' => 'La cédula ya existe en la base de datos',
+            'dob.required' => 'La fecha de nacimiento es requerida',
+            'dob.date_format' => 'La fecha de nacimiento debe tener el formato dd/mm/yyyy',
+            'gen.required' => 'El género es requerido',
+            'gen.in' => 'El género debe ser M o F',
+            'age.required' => 'La edad es requerida',
+            'age.numeric' => 'La edad debe ser un número',
+        ];
     }
+
 }

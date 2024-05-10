@@ -47,23 +47,13 @@ class SportmanService
 
     public function delete($id)
     {
-        try{
             $sportman = $this->sportman->find($id);
-            $sportman->delete();
+            $sportman->update(['activo'=>0]);
             return true;
-        }catch(Exception $e){
-            return ['success'=>false,
-            'message'=>'Ha ocurrido un error al eliminar '.$e->getMessage()];
-        }
     }
 
     public function find($id)
     {
-        try{
-            return $this->sportman->find($id);
-        }catch(Exception $e){
-            return ['success'=>false,
-            'message'=>'Ha ocurrido un error al obtener los datos '.$e->getMessage()];
-        }
+        return $this->sportman->find($id);
     }
 }

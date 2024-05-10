@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Almuerzo;
 use App\Models\Deportista;
 use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Http\Request;
 
 class EatsController extends Controller
@@ -35,7 +36,7 @@ class EatsController extends Controller
             $horaInicio = Carbon::createFromFormat('H:i:s', $almuerzo->hora_inicio);
             $horaFin = Carbon::createFromFormat('H:i:s', $almuerzo->hora_fin);
             // Obtener la fecha y hora actual en la zona horaria del servidor
-            $now = Carbon::now();
+            $now = Carbon::now(new DateTimeZone('America/Guayaquil'));
             // Verificar si la fecha del almuerzo es hoy y la hora actual está dentro del rango permitido
             if ($now->isSameDay($almuerzo->fecha) && $now->between($horaInicio, $horaFin)) {
                 return response()->json(['message' => 'No se puede marcar el almuerzo fuera de la fecha y hora programada'], 422);

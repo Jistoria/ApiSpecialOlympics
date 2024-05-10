@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DataPublicController;
 use App\Http\Controllers\EatsController;
 use App\Http\Controllers\FilesController;
 use App\Http\Controllers\SportmanController;
@@ -54,6 +55,7 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
     route::put('/update_deporte/{deporte}', [SportController::class, 'update']);
     //crudcito de actividades deportivas
     Route::get('/get_ad', [SportActivitiesController::class, 'index']);
+    Route::get('/get_ad_f/{deporte}', [SportActivitiesController::class, 'indexf']);
     route::post('/store_ad', [SportActivitiesController::class, 'store']);
     route::delete('/delete_ad/{actividad}', [SportActivitiesController::class, 'delete']);
     route::put('/update_ad/{actividad}', [SportActivitiesController::class, 'update']);
@@ -69,6 +71,8 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
     route::put('/update_tg/{tipo_invitado}', [TypeGuestController::class, 'update']);
     //crudcito de invitados
     Route::get('/get_guest', [GuestController::class, 'index']);
+    Route::get('/get_guestf/{tipo_invitado_id}', [GuestController::class, 'indexf']);
+    Route::get('/get_find/{nombreCompleto}', [GuestController::class, 'show']);
     route::post('/store_guest', [GuestController::class, 'store']);
     route::delete('/delete_guest/{invitado}', [GuestController::class, 'delete']);
     route::put('/update_guest/{invitado}', [GuestController::class, 'update']);
@@ -76,6 +80,8 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
     Route::get('/get_provincia', [ProvinceController::class, 'index']);
     //Rutas para archivos
     Route::post('/deportista_import',[FilesController::class,'deportistaImport']);
+    Route::post('/deportista_images/{provincia}',[FilesController::class,'deportistaImages']);
 });
 
-
+//Rutas publicas
+Route::get('/get_sportman',[DataPublicController::class,'get_sportman']);

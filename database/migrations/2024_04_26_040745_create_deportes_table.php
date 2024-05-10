@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('deporte_id');
             $table->string('deporte');
             $table->string('descripcion');
+            $table->boolean('activo')->default(true);
             $table->timestamps();
         });
     }

@@ -10,7 +10,12 @@ class SportActivitiesController extends Controller
 {
     public function index()
     {
-        $sportActivities = ActividadDeportiva::all();
+        $sportActivities = ActividadDeportiva::orderBy('actividad_id')->get();
+        return response()->json($sportActivities);
+    }
+    public function indexf($deporte)
+    {
+        $sportActivities = ActividadDeportiva::where('deporte_id', $deporte)->orderBy('actividad_id')->get();
         return response()->json($sportActivities);
     }
     public function store(Request $request)
@@ -22,12 +27,12 @@ class SportActivitiesController extends Controller
                 'descripcion' => 'required'
             ]);
             ActividadDeportiva::create($request->all());
-            return response()->json(['message' => 'Creada la actividad con exito' ], 200);
+            return response()->json(['success'=>'true','message' => 'Creada la actividad con exito' ], 200);
         } catch (Exception $e) {
                 // Captura el mensaje de error
             $errorMessage = $e->getMessage();
             // Retorna el mensaje de error en un JSON de respuesta
-            return response()->json(['error' => 'Ha ocurrido un error al crear la actividad deportiva: ' . $errorMessage], 500);
+            return response()->json(['success'=>'false','error' => 'Ha ocurrido un error al crear la actividad deportiva: ' . $errorMessage], 500);
         }
     }
 
@@ -36,9 +41,9 @@ class SportActivitiesController extends Controller
         $sportActivity = ActividadDeportiva::find($id);
         if ($sportActivity) {
             $sportActivity->delete();
-            return response()->json(['message' => 'Actividad deportiva eliminada correctamente'], 200);
+            return response()->json(['success'=>'true','message' => 'Actividad deportiva eliminada correctamente'], 200);
         } else {
-            return response()->json(['error' => 'La actividad deportiva no existe.'], 404);
+            return response()->json(['success'=>'false','error' => 'La actividad deportiva no existe.'], 404);
         }
     }
     public function update(Request $request, $id)
@@ -54,9 +59,9 @@ class SportActivitiesController extends Controller
             $sportActivity->actividad = $request->actividad;
             $sportActivity->descripcion = $request->descripcion;
             $sportActivity->save();
-            return response()->json(['message' => 'Actividad deportiva actualizada correctamente'], 200);
+            return response()->json(['success'=>'true','message' => 'Actividad deportiva actualizada correctamente'], 200);
         } else {
-            return response()->json(['error' => 'La actividad deportiva no existe.'], 404);
+            return response()->json(['success'=>'false','error' => 'La actividad deportiva no existe.'], 404);
         }
     }
 }

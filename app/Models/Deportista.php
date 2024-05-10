@@ -87,4 +87,5 @@ class Deportista extends Model
     {
         return 'cedula'; // Utiliza 'cedula' como la clave de ruta en lugar de 'id'
     }
+
 }

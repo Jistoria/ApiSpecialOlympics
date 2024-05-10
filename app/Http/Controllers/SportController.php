@@ -12,7 +12,7 @@ class SportController extends Controller
     public function index()
     {
         // Método index: Muestra una lista de recursos (en este caso, deportes)
-        $sports = Deporte::all();
+        $sports = Deporte::orderBy('deporte_id')->get();
         return response()->json($sports);
     }
 
@@ -29,10 +29,10 @@ class SportController extends Controller
         // Verificar si el deporte se creó correctamente
         if ($sport instanceof Deporte) {
             // Si la creación del deporte fue exitosa, devuelve una respuesta JSON con el deporte creado
-            return response()->json(['message' => 'Deporte creado correctamente'], 201);
+            return response()->json(['success'=>'true','message' => 'Deporte creado correctamente'], 201);
         } else {
             // Si ocurrió un error durante la creación del deporte, devuelve una respuesta JSON con un mensaje de error
-            return response()->json(['error' => 'Ha ocurrido un error al crear el deporte.'], 500);
+            return response()->json(['success'=>'false','error' => 'Ha ocurrido un error al crear el deporte.'], 500);
         }
     }
 
@@ -56,10 +56,10 @@ class SportController extends Controller
             // Si el deporte existe, eliminarlo de la base de datos
             $sport->delete();
             // Devolver una respuesta JSON con un mensaje de éxito
-            return response()->json(['message' => 'Deporte eliminado correctamente'], 200);
+            return response()->json(['success'=>'true','message' => 'Deporte eliminado correctamente'], 200);
         } else {
             // Si el deporte no existe, devolver una respuesta JSON con un mensaje de error
-            return response()->json(['error' => 'Deporte no encontrado'], 404);
+            return response()->json(['success'=>'false','error' => 'Deporte no encontrado'], 404);
         }
     }
     public function update($id,Request $request)
@@ -82,14 +82,14 @@ class SportController extends Controller
                 // Si el deporte existe, actualizar sus datos con los nuevos datos proporcionados
                 $sport->update($request->all());
                 // Devolver una respuesta JSON con un mensaje de éxito
-                return response()->json(['message' => 'Deporte actualizado correctamente'], 200);
+                return response()->json(['success'=>'true','message' => 'Deporte actualizado correctamente'], 200);
             } else {
                 // Si el deporte no existe, devolver una respuesta JSON con un mensaje de error
-                return response()->json(['error' => 'Deporte no encontrado'], 404);
+                return response()->json(['success'=>'false','error' => 'Deporte no encontrado'], 404);
             }
         } catch (Exception $e) {
             // Si ocurre un error durante la actualización del deporte, devolver una respuesta JSON con un mensaje de error
-            return response()->json(['error' => 'Ha ocurrido un error al actualizar el deporte.'], 500);
+            return response()->json(['success'=>'false','error' => 'Ha ocurrido un error al actualizar el deporte.'], 500);
         }
     }
 

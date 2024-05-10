@@ -20,11 +20,15 @@ class SportmanController extends Controller
      */
     public function index()
     {
-        // Llama al método paginate() del servicio de deportistas
-        $paginatedData = $this->sportmanService->paginate();
+        try{
+            // Llama al método paginate() del servicio de deportistas
+            $paginatedData = $this->sportmanService->paginate();
+            // Devuelve una respuesta JSON con los datos paginados
+            return response()->json($paginatedData);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
+        }
 
-        // Devuelve una respuesta JSON con los datos paginados
-        return response()->json($paginatedData);
     }
     /**
      * Almacena un nuevo deportista en la base de datos.
@@ -34,7 +38,13 @@ class SportmanController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($this->sportmanService->create($request->all()));
+        try{
+            $new_sportman = $this->sportmanService->create($request->all());
+        return response()->json(['success'=>true,'message'=>'Deportista creado correctamente','deportista'=>$new_sportman]);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
+        }
+
     }
 
     /**
@@ -46,7 +56,13 @@ class SportmanController extends Controller
      */
     public function destroy($sportman)
     {
-        $this->sportmanService->delete($sportman);
+        try{
+            $this->sportmanService->delete($sportman);
+            return response()->json(['success'=>true,'message'=>'Deportista desactivado']);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
+        }
+
     }
 
     /**
@@ -58,7 +74,13 @@ class SportmanController extends Controller
      */
     public function show($sportman)
     {
-        return response()->json($this->sportmanService->find($sportman));
+        try{
+            $sportman = $this->sportmanService->find($sportman);
+            return response()->json(['success'=>true,'deportista'=>$sportman]);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
+        }
+
     }
 
 }

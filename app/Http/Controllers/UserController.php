@@ -57,7 +57,7 @@ class UserController extends Controller
     // Iterar a través de cada deportista para agregar su QR code
     foreach ($deportistas as $deportista) {
         // Comprobar si existe el archivo QR para este deportista
-        $filePath = 'public/qrcodes/' . $deportista->cedula . '.png'; // Ruta al archivo QR
+        $filePath = 'public/qrcodes/' . $deportista->cedula; // Ruta al archivo QR
 
         if (Storage::exists($filePath)) {
             // Leer el contenido del archivo QR

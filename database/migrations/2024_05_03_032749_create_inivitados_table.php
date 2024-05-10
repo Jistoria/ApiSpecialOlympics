@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('invitados', function (Blueprint $table) {
             $table->id('invitado_id');
+            $table->text('cedula')->unique();
             $table->unsignedBigInteger('provincia_id')->nullable();
             $table->unsignedBigInteger('tipo_invitado_id');
             $table->string('nombre');
+            $table->string('apellido');
+            $table->integer('edad');
+            $table->enum('genero',['M','F']);
+            $table->boolean('activo')->default(true);
             $table->foreign('provincia_id')
                 ->references('provincia_id')
                 ->on('provincias')
