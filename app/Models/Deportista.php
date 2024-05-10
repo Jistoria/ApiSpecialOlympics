@@ -101,7 +101,6 @@ class Deportista extends Model
             'gender' => $this->genero,
             'birthday' => $this->fecha_nacimiento->format($this->formato),
             'img_url' => $this->url_imagen,
-            'state' => $this->activo,
         ];
     }
 }
