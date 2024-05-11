@@ -25,15 +25,15 @@ class FilesController extends Controller
     public function deportistaImages(Provincia $provincia, Request $request)
     {
         try{
+            $error = '';
             $request->validate([
                 'images' => 'required|array',
                 'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             $name = $provincia->provincia;
             foreach($request->file('images') as $image){
-                $url = $image->store('public/images/'.$name.'/'.$image->getClientOriginalName());
+                $url = $image->storeAs('public/images/'.$name.'/'.$image->getClientOriginalName());
             }
-
             return response()->json(['success'=>true,'message'=>'Imagenes subidas correctamente', 'url'=>$url]);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
