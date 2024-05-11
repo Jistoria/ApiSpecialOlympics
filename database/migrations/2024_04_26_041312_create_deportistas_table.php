@@ -15,6 +15,11 @@ return new class extends Migration
             $table->id();
             $table->text('cedula')->unique();
             $table->unsignedBigInteger('numero_deportista')->unique()->nullable();
+            $table->unsignedBigInteger('deporte_id');
+            $table->foreign('deporte_id')
+                ->references('deporte_id')
+                ->on('deportes')
+                ->onDelete('restrict');
             $table->unsignedInteger('provincia_id');
             $table->foreign('provincia_id')
                 ->references('provincia_id')

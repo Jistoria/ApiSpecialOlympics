@@ -24,6 +24,9 @@ class DeportesSeeder extends Seeder
             ['deporte' => 'Gimnasia Rítmica', 'descripcion' => 'Deporte que combina elementos de danza y gimnasia'],
             ['deporte' => 'Natación', 'descripcion' => 'Deporte que implica nadar en agua'],
             ['deporte' => 'Tenis', 'descripcion' => 'Deporte de raqueta jugado en una cancha rectangular'],
+            ['deporte' => 'Triathlón', 'descripcion' => 'Deporte que combina natación, ciclismo y carrera'],
+            ['deporte' => 'Voleibol', 'descripcion' => 'Deporte de equipo jugado en una cancha rectangular con una red en el medio'],
+            ['deporte' => 'Voleibol de Playa', 'descripcion' => 'Variante del voleibol jugado en la arena'],
         ];
 
         // Iterar sobre el array de deportes y crear registros en la base de datos

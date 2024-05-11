@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('actividad_id');
             $table->time('hora_inicio');
             $table->time('hora_fin')->nullable();
+            $table->date('fecha');
             $table->timestamps();
 
             // Definición de las claves foráneas

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\DataImport;
 use App\Imports\DeportistaImport;
 use App\Models\Provincia;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class FilesController extends Controller
             $request->validate([
                 'excelLoad' => 'required|mimes:xlsx,xls',
             ]);
-            Excel::import(new DeportistaImport,$request->file('excelLoad'),null, \Maatwebsite\Excel\Excel::XLSX, $request->provincia_id);
+            Excel::import(new DataImport,$request->file('excelLoad'),null, \Maatwebsite\Excel\Excel::XLSX);
             return response()->json(['success'=>true,'message'=>'Deportistas importados correctamente']);
         }catch(\Maatwebsite\Excel\Validators\ValidationException $e){
             return response()->json(['success'=>false,'message'=>$e->failures()],422);

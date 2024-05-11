@@ -14,12 +14,17 @@ return new class extends Migration
         Schema::create('invitados', function (Blueprint $table) {
             $table->id('invitado_id');
             $table->text('cedula')->unique();
+            $table->unsignedBigInteger('deporte_id')->nullable();
+            $table->foreign('deporte_id')
+                ->references('deporte_id')
+                ->on('deportes')
+                ->onDelete('restrict');
             $table->unsignedBigInteger('provincia_id')->nullable();
             $table->unsignedBigInteger('tipo_invitado_id');
             $table->string('nombre');
-            $table->string('apellido');
             $table->integer('edad');
             $table->enum('genero',['M','F']);
+            $table->date('fecha_nacimiento');
             $table->boolean('activo')->default(true);
             $table->foreign('provincia_id')
                 ->references('provincia_id')

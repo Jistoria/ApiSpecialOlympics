@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('actividad_id');
             $table->unsignedInteger('deporte_id');
             $table->string('actividad');
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();
             $table->boolean('activo')->default(true);
             $table->timestamps();
 

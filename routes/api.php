@@ -84,4 +84,4 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
 });
 
 //Rutas publicas
-Route::get('/atlethe',[DataPublicController::class,'get_sportman']);
+Route::get('/athlete',[DataPublicController::class,'get_sportman']);

@@ -39,6 +39,7 @@ class Deportista extends Model
         'apellido',
         'edad',
         'genero',
+        'deporte_id',
         'fecha_nacimiento',
         'url_imagen',
         'activo',
@@ -61,6 +62,12 @@ class Deportista extends Model
         return $this->belongsTo(Provincia::class, 'provincia_id');
     }
 
+    public function actividades_deportivas()
+    {
+        return $this->belongsToMany(ActividadDeportiva::class, 'actividad_deportista', 'deportista_id', 'actividad_id')
+            ->withPivot('resultados')
+            ->withTimestamps();
+    }
 
     /**
      * Obtener los almuerzos asociados al deportista.
@@ -95,8 +102,7 @@ class Deportista extends Model
             'dni' => $this->cedula,
             'sportsman_number' => $this->numero_deportista,
             'address' => $this->provincia->provincia,
-            'name' => $this->nombre,
-            'lastname' => $this->apellido,
+            'name' => $this->nombre.' '.$this->apellido,
             'age' => $this->edad,
             'gender' => $this->genero,
             'birthday' => $this->fecha_nacimiento->format($this->formato),

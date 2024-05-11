@@ -2,6 +2,8 @@
 
 namespace App\Imports;
 
+use App\Models\ActividadDeportiva;
+use App\Models\Deporte;
 use App\Models\Deportista;
 use App\Models\Provincia;
 use App\Rules\CedulaEcuatoriana;
@@ -16,6 +18,13 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class DeportistaImport implements ToModel, WithHeadingRow, WithValidation
 {
 
+    private $deporte;
+    private $act;
+    public function __construct()
+    {
+        $this->deporte = Deporte::pluck('deporte_id','deporte');
+        $this->act = ActividadDeportiva::pluck('actividad_id','actividad');
+    }
     /**
     * @param array $row
     *
@@ -23,32 +32,42 @@ class DeportistaImport implements ToModel, WithHeadingRow, WithValidation
     */
     public function model(array $row)
     {
+        //PREPARANDO LOS DATOS PARA EL MODELO
         $provincia_id= Provincia::select('provincia_id')->where('provincia','LIKE',$row['provincia'])->first();
         $nameParts = explode(',',$row['name']);
         $apellido = ucwords(strtolower($nameParts[0]));
-        $name = strtr($nameParts[1],['_'=>' ']);
+        $name = ltrim(strtr($nameParts[1],['_'=>' ']));
         $cedula = $row['cedula'];
         $fechaNacimiento = Carbon::createFromFormat('d/m/Y', $row['dob'])->format('Y-m-d');
-
+        $actividades = explode(', ', $row['evento']);
+        // Generar el código QR
         $qrCode = QrCode::size(300)->generate($cedula);
              // Guardar el código QR en el almacenamiento (storage)
             $fileName = $cedula ; // Nombre del archivo basado en la cédula
             Storage::put('public/qrcodes/' . $fileName, $qrCode);
 
-        return new Deportista([
+        $new_deportista = new Deportista([
             'nombre' => $name,
             'cedula' => $cedula,
             'apellido' => $apellido,
             'genero' => $row['gen'],
             'edad' => $row['age'],
+            'numero_deportista' => $row['peto'],
+            'deporte_id' => $this->deporte[$row['deporte']],
             'fecha_nacimiento' => $fechaNacimiento,
             'url_imagen' => "images/$provincia_id->provincia_id/$apellido$name $cedula.jpg",
             'provincia_id' => $provincia_id->provincia_id,
         ]);
+        $ids = array_map(function($actividad) {
+            return $this->act[$actividad];
+        }, $actividades);
+        $new_deportista->save(); // Guarda el modelo en la base de datos
+        $new_deportista->actividades_deportivas()->attach($ids);
+        return $new_deportista;
     }
     public function headingRow(): int
     {
-        return 2;
+        return 4;
     }
 
     public function rules(): array
