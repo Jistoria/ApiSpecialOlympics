@@ -55,7 +55,7 @@ class DeportistaImport implements ToModel, WithHeadingRow, WithValidation
             'numero_deportista' => $row['peto'],
             'deporte_id' => $this->deporte[$row['deporte']],
             'fecha_nacimiento' => $fechaNacimiento,
-            'url_imagen' => "images/".$row['provincia']."/"."$apellido$name $cedula.jpg",
+            'url_imagen' => "images/".$row['provincia']."/"."$apellido $name $cedula.jpg",
             'provincia_id' => $provincia_id->provincia_id,
         ]);
         $ids = array_map(function($actividad) {
