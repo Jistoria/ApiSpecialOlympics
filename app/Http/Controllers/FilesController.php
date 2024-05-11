@@ -31,9 +31,10 @@ class FilesController extends Controller
             ]);
             $name = $provincia->provincia;
             foreach($request->file('images') as $image){
-                $image->store('public/images/'.$name);
+                $url = $image->store('public/images/'.$name);
             }
-            return response()->json(['success'=>true,'message'=>'Imagenes subidas correctamente']);
+
+            return response()->json(['success'=>true,'message'=>'Imagenes subidas correctamente', 'url'=>$url]);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
         }
