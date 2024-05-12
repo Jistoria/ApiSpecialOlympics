@@ -49,7 +49,7 @@ class SportmanService
     public function active($id)
     {
             $sportman = $this->sportman->find($id);
-            $sportman->update(['activo'=>0]);
+            $sportman->update(['activo'=>!$sportman->activo]);
             return true;
     }
 
