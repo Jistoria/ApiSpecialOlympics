@@ -12,6 +12,7 @@ class Deporte extends Model
     protected $primaryKey = 'deporte_id';
     protected $fillable = ['deporte','descripcion'];
 
+    protected $hidden = ['created_at', 'updated_at'];
     public function ActividadDeportiva()
     {
         return $this->hasMany(ActividadDeportiva::class);

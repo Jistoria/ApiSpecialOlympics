@@ -31,4 +31,14 @@ class DataPublicController extends Controller
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
         }
     }
+
+    public function get_sport()
+    {
+        try{
+            $sport = $this->dataService->get_sport();
+            return response()->json($sport);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
+        }
+    }
 }

@@ -2,22 +2,30 @@
 
 namespace App\Services;
 
+use App\Models\Deporte;
 use App\Models\Deportista;
+use Illuminate\Support\Facades\DB;
 
 class DataPublicService
 {
     private $sportman;
-    public function __construct(Deportista $sportman)
+    private $sport;
+    public function __construct(Deportista $sportman, Deporte $sport)
     {
-        $this->sportman = $sportman->where('activo',1);
+        $this->sportman = $sportman;
+        $this->sport = $sport;
     }
 
     public function get_sportman()
     {
-        $sportman = $this->sportman->get();
-        $sportman = $sportman->map(function($item){
-            return $item->getAll();
-        });
+        $sportman = $this->sportman->select(
+            'cedula as dni',
+            DB::raw("CONCAT(nombre, ' ', apellido) as name"),
+            'edad as age',
+            'genero as gender',
+            'fecha_nacimiento as birthday',
+            'url_imagen as img_url'
+        )->get();
         return $sportman;
     }
 
@@ -27,4 +35,9 @@ class DataPublicService
         return $sportman;
     }
 
+    public function get_sport()
+    {
+        $sport = $this->sport->select('deporte_id as id','deporte as sport')->get();
+        return $sport;
+    }
 }
