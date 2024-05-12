@@ -46,7 +46,7 @@ class SportmanService
         }
     }
 
-    public function delete($id)
+    public function active($id)
     {
             $sportman = $this->sportman->find($id);
             $sportman->update(['activo'=>0]);
