@@ -39,9 +39,9 @@ class SportmanController extends Controller
     public function store(Request $request)
     {
         try{
-            $request->validate(['nombre' =>'required|string','apellido|string' =>'required','edad' =>'required','genero' =>'required','provincia_id' =>'required|exists:provincias,provincia_id','deporte_id' =>'required|exists:deportes,deporte_id']);
+            $request->validate(['cedula'=>'required|unique:deportistas,cedula','nombre' =>'required|string','apellido' =>'required|string','edad' =>'required','genero' =>'required','provincia_id' =>'required|exists:provincias,provincia_id','deporte_id' =>'required|exists:deportes,deporte_id','fecha_nacimiento' =>'required|date','imagen' =>'required|image']);
             $new_sportman = $this->sportmanService->create($request->all());
-        return response()->json(['success'=>true,'message'=>'Deportista creado correctamente','deportista'=>$new_sportman]);
+            return response()->json(['success'=>true,'message'=>'Deportista creado correctamente','deportista'=>$new_sportman]);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
         }
@@ -94,8 +94,8 @@ class SportmanController extends Controller
 
     public function active($sportman)
     {
-        $this->sportmanService->active($sportman);
-        return response()->json(['success'=>true,'message'=>'Deportista desactivado']);
+        $response = $this->sportmanService->active($sportman);
+        return response()->json($response);
     }
 
 }
