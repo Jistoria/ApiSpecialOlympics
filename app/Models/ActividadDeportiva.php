@@ -15,12 +15,13 @@ class ActividadDeportiva extends Model
 
     protected $fillable = ['deporte_id', 'actividad', 'descripcion'];
 
+    protected $hidden = ['created_at', 'updated_at'];
     public function deporte()
     {
         return $this->belongsTo(Deporte::class, 'deporte_id');
     }
     public function lugar()
     {
-        return $this->belongsToMany(Lugar::class);
+        return $this->belongsToMany(Lugar::class, 'lugar_actividad_horario', 'actividad_id', 'lugar_id');
     }
 }

@@ -14,6 +14,8 @@ class Lugar extends Model
 
     protected $fillable = ['nombre', 'descripcion'];
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     public function actividadDeportiva()
     {
         return $this->belongsToMany(ActividadDeportiva::class);

@@ -68,7 +68,7 @@ class Deportista extends Model
             ->withPivot('resultados')
             ->withTimestamps();
     }
-
+    protected $hidden = ['created_at', 'updated_at'];
     /**
      * Obtener los almuerzos asociados al deportista.
      */
@@ -87,7 +87,7 @@ class Deportista extends Model
     }
     public function Deporte()
     {
-        return $this->hasMany(Deporte::class);
+        return $this->belongsTo(Deporte::class,'deporte_id');
     }
 
     public function getRouteKeyName()

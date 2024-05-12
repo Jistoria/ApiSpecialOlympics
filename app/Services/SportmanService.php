@@ -15,7 +15,8 @@ class SportmanService
 
     public function paginate($search = null)
     {
-        $sportman_paginate = $this->sportman
+        $sportman_paginate = $this->sportman->
+                with(['deporte','provincia','actividades_deportivas','actividades_deportivas.lugar'])
                     ->when($search, function($query) use ($search){
                         return $query->where('nombre','like','%'.$search.'%');
                     })
