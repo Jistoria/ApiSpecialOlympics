@@ -41,4 +41,14 @@ class DataPublicController extends Controller
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
         }
     }
+
+    public function get_activity()
+    {
+        try{
+            $activity = $this->dataService->get_activity();
+            return response()->json($activity);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
+        }
+    }
 }
