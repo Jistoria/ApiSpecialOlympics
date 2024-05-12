@@ -18,19 +18,23 @@ class SportmanService
         $search= $filters['search'] ?? null;
         $provincia= $filters['provincia'] ?? null;
         $deporte= $filters['deporte'] ?? null;
-        $sportman_paginate = $this->sportman->
-                with(['deporte','provincia','actividades_deportivas','actividades_deportivas.lugar'])
-                    ->when($search, function($query) use ($search){
-                        return $query->where('nombre','like','%'.$search.'%')
-                                    ->orWhere('apellido','like','%'.$search.'%')
-                                    ->orWhere('cedula','like','%'.$search.'%');
-                    })
-                    ->when($provincia, function($query) use ($provincia){
-                        return $query->where('provincia_id',$provincia);
-                    })
-                    ->when($deporte, function($query) use ($deporte){
-                            return $query->where('deporte_id',$deporte);
-                    })
+        $sportman_paginate = $this->sportman
+    ->with(['deporte', 'provincia', 'actividades_deportivas', 'actividades_deportivas.lugar'])
+    ->when($search, function ($query) use ($search) {
+        return $query->where(function ($query) use ($search) {
+            $query->where('nombre', 'like', '%' . $search . '%')
+                ->orWhere('apellido', 'like', '%' . $search . '%')
+                ->orWhere('cedula', 'like', '%' . $search . '%');
+        });
+    })
+    ->when($provincia, function ($query) use ($provincia) {
+        return $query->where('provincia_id', $provincia);
+    })
+    ->when($deporte, function ($query) use ($deporte) {
+        return $query->whereHas('actividades_deportivas', function ($query) use ($deporte) {
+            $query->where('deporte_id', $deporte);
+        });
+    })
                     ->paginate(20);
         return $sportman_paginate;
     }
