@@ -82,9 +82,16 @@ class Deportista extends Model
      * Obtener la URL de la imagen del deportista.
      */
     public function qr()
-    {
-        return $this->Storage::get(filePath: 'public/qrcodes/' . $this->cedula);
+{
+    $qrFilePath = 'public/qrcodes/' . $this->cedula;
+
+    if (Storage::exists($qrFilePath)) {
+        return Storage::get($qrFilePath);
     }
+
+    return null; // O manejar de otra manera si el archivo no existe
+}
+
     public function Deporte()
     {
         return $this->belongsTo(Deporte::class,'deporte_id');
@@ -108,5 +115,10 @@ class Deportista extends Model
             'birthday' => $this->fecha_nacimiento->format($this->formato),
             'img_url' => $this->url_imagen,
         ];
+    }
+
+    public function getFechaNacimientoAttribute($value)
+    {
+        return $this->attributes['fecha_nacimiento'] = $value->format($this->formato);
     }
 }

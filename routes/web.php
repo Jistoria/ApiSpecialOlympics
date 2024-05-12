@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Storage;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('credenciales', function () {
+    $athletes = App\Models\Deportista::select('cedula', 'nombre', 'apellido', 'deporte_id', 'url_imagen','numero_deportista')->
+    with(['deporte:deporte_id,deporte','actividades_deportivas:deporte_id,actividad','qr'])->get();
+    dd($athletes);
+});
 //logica para obtener QR
 Route::get('/qr/{cedula}', function ($cedula) {
     // Comprobar si el archivo QR existe en el almacenamiento

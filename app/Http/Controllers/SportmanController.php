@@ -39,6 +39,7 @@ class SportmanController extends Controller
     public function store(Request $request)
     {
         try{
+            $request->validate(['nombre' =>'required|string','apellido|string' =>'required','edad' =>'required','genero' =>'required','provincia_id' =>'required|exists:provincias,provincia_id','deporte_id' =>'required|exists:deportes,deporte_id']);
             $new_sportman = $this->sportmanService->create($request->all());
         return response()->json(['success'=>true,'message'=>'Deportista creado correctamente','deportista'=>$new_sportman]);
         }catch(\Exception $e){
