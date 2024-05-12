@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -52,6 +53,7 @@ class Deportista extends Model
 
     // protected $appends = ['qr'];
 
+    protected $dates = ['fecha_nacimiento'];
 
 
     /**
@@ -118,7 +120,8 @@ class Deportista extends Model
     }
 
     public function getFechaNacimientoAttribute($value)
-    {
-        return $this->attributes['fecha_nacimiento'] = $value->format($this->formato);
-    }
+{
+    return Carbon::parse($value)->format($this->formato);
+}
+
 }

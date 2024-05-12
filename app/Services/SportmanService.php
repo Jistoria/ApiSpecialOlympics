@@ -35,7 +35,9 @@ class SportmanService
             $query->where('deporte_id', $deporte);
         });
     })
-                    ->paginate(20);
+
+    ->paginate(20);
+
         return $sportman_paginate;
     }
 
