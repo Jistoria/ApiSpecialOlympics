@@ -13,12 +13,23 @@ class SportmanService
         $this->sportman = $sportman;
     }
 
-    public function paginate($search = null)
+    public function paginate($filters)
     {
+        $search= $filters['search'] ?? null;
+        $provincia= $filters['provincia'] ?? null;
+        $deporte= $filters['deporte'] ?? null;
         $sportman_paginate = $this->sportman->
                 with(['deporte','provincia','actividades_deportivas','actividades_deportivas.lugar'])
                     ->when($search, function($query) use ($search){
-                        return $query->where('nombre','like','%'.$search.'%');
+                        return $query->where('nombre','like','%'.$search.'%')
+                                    ->orWhere('apellido','like','%'.$search.'%')
+                                    ->orWhere('cedula','like','%'.$search.'%');
+                    })
+                    ->when($provincia, function($query) use ($provincia){
+                        return $query->where('provincia_id',$provincia);
+                    })
+                    ->when($deporte, function($query) use ($deporte){
+                            return $query->where('deporte_id',$deporte);
                     })
                     ->paginate(20);
         return $sportman_paginate;

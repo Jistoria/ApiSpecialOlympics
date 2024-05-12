@@ -18,11 +18,11 @@ class SportmanController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         try{
             // Llama al método paginate() del servicio de deportistas
-            $paginatedData = $this->sportmanService->paginate();
+            $paginatedData = $this->sportmanService->paginate($request->all());
             // Devuelve una respuesta JSON con los datos paginados
             return response()->json($paginatedData);
         }catch(\Exception $e){
