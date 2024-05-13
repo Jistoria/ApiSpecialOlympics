@@ -47,10 +47,8 @@ class FilesController extends Controller
     public function athleteCredentials()
     {
         try{
-            $deportistas = \App\Models\Deportista::all();
-            $deportistas->map(function($deportista){
-                return $deportista->credentials();
-            });
+            $deportistas = \App\Models\Deportista::with('provincia','deporte','actividades_deportivas')->select('id','nombre','apellido','numero_deportista', 'provincia_id', 'deporte_id')->paginate(4);
+
             return response()->json($deportistas);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
