@@ -45,19 +45,20 @@ class DeportistaImport implements ToModel, WithHeadingRow, WithValidation
              // Guardar el código QR en el almacenamiento (storage)
             $fileName = $cedula ; // Nombre del archivo basado en la cédula
             Storage::put('public/qrcodes/' . $fileName, $qrCode);
-
-        $new_deportista = new Deportista([
-            'nombre' => $name,
-            'cedula' => $cedula,
-            'apellido' => $apellido,
-            'genero' => $row['gen'],
-            'edad' => $row['age'],
-            'numero_deportista' => $row['peto'],
-            'deporte_id' => $this->deporte[$row['deporte']],
-            'fecha_nacimiento' => $fechaNacimiento,
-            'url_imagen' => "images/".$row['provincia']."/"."$apellido $name $cedula.jpg",
-            'provincia_id' => $provincia_id->provincia_id,
-        ]);
+            $url_imagen = strtolower("/storage/images/".$row['provincia']."/"."$apellido $name $cedula.jpg");
+            $url_imagen = str_replace(' ', '_', $url_imagen);
+            $new_deportista = new Deportista([
+                'nombre' => $name,
+                'cedula' => $cedula,
+                'apellido' => $apellido,
+                'genero' => $row['gen'],
+                'edad' => $row['age'],
+                'numero_deportista' => $row['peto'],
+                'deporte_id' => $this->deporte[$row['deporte']],
+                'fecha_nacimiento' => $fechaNacimiento,
+                'url_imagen' => $url_imagen,
+                'provincia_id' => $provincia_id->provincia_id,
+            ]);
         $ids = array_map(function($actividad) {
             return $this->act[$actividad];
         }, $actividades);

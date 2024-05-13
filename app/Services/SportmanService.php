@@ -36,7 +36,7 @@ class SportmanService
         });
     })
 
-    ->paginate(20);
+    ->paginate(10);
 
         return $sportman_paginate;
     }

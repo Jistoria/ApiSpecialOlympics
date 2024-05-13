@@ -8,6 +8,7 @@ use App\Models\Provincia;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
+
 class FilesController extends Controller
 {
     public function deportistaImport(Request $request)
@@ -26,14 +27,16 @@ class FilesController extends Controller
     public function deportistaImages(Provincia $provincia, Request $request)
     {
         try{
-            $error = '';
             $request->validate([
                 'images' => 'required|array',
                 'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
+            // Create an instance of the Firebase Storage client
             $name = $provincia->provincia;
             foreach($request->file('images') as $image){
-                $url = $image->storeAs('public/images/'.$name.'/'.$image->getClientOriginalName());
+                $url_imagen = strtolower("images/".$name."/".$image->getClientOriginalName());
+                $url_imagen = str_replace(' ', '_', $url_imagen);
+                $url = $image->storeAs($url_imagen);
             }
             return response()->json(['success'=>true,'message'=>'Imagenes subidas correctamente', 'url'=>$url]);
         }catch(\Exception $e){

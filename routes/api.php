@@ -82,6 +82,9 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
     //Rutas para archivos
     Route::post('/deportista_import',[FilesController::class,'deportistaImport']);
     Route::post('/deportista_images/{provincia}',[FilesController::class,'deportistaImages']);
+
+    //DataPDF
+    Route::get('credentials_athlete',[FilesController::class,'athleteCredentials']);
 });
 
 //Rutas publicas

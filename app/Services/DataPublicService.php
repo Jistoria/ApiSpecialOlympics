@@ -21,17 +21,23 @@ class DataPublicService
     }
 
     public function get_sportman()
-    {
-        $sportman = $this->sportman->select(
-            'cedula as dni',
-            DB::raw("CONCAT(nombre, ' ', apellido) as name"),
-            'edad as age',
-            'genero as gender',
-            'fecha_nacimiento as birthday',
-            'url_imagen as img_url'
-        )->get();
-        return $sportman;
-    }
+{
+    $sportman = $this->sportman->with('provincia')->get()->map(function ($item) {
+        return [
+            'id' => $item->id,
+            'dni' => $item->cedula,
+            'name' => $item->nombre . ' ' . $item->apellido,
+            'age' => $item->edad,
+            'gender' => $item->genero,
+            'sportsman_number' => $item->numero_deportista,
+            'birthday' => $item->fecha_nacimiento,
+            'img_url' => $item->url_imagen,
+            'address' => optional($item->provincia)->provincia, // Nombre de la provincia
+        ];
+    });
+
+    return $sportman;
+}
 
     public function get_sportman_by_id($cedula)
     {
@@ -41,7 +47,7 @@ class DataPublicService
 
     public function get_sport()
     {
-        $sport = $this->sport->select('deporte_id as id','deporte as sport')->get();
+        $sport = $this->sport->wi;
         return $sport;
     }
 
