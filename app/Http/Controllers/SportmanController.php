@@ -98,4 +98,16 @@ class SportmanController extends Controller
         return response()->json($response);
     }
 
+    public function activitiesAttach($spotman, Request $request)
+    {
+        try{
+            $request->validate(['ids'=>'required|array','ids.*'=>'required|exists:actividades_deportivas,actividad_id']);
+            $response = $this->sportmanService->activitiesAttach($spotman, $request->input());
+            return response()->json($response);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
+        }
+
+    }
+
 }

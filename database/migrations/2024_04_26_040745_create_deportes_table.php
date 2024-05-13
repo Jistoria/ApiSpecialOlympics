@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('deporte_id');
             $table->string('deporte');
             $table->string('descripcion');
+            $table->string('icon');
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });

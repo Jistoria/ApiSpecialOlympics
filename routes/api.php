@@ -49,6 +49,7 @@ Route::middleware(['auth:sanctum','role:Voluntario'])->group(function(){
 Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->group(function(){
     Route::resource('sportman', SportmanController::class);
     Route::post('sportman_active/{deportista}',[SportmanController::class,'active']);
+    Route::post('sportman_activities/{deportista}',[SportmanController::class,'activitiesAttach']);
     //crudcito de deportes
     Route::get('/get_deporte', [SportController::class, 'index']);
     route::post('/store_deporte', [SportController::class, 'store']);

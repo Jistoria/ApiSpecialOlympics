@@ -15,18 +15,11 @@ class DeportesSeeder extends Seeder
     {
         // Array con los nombres de los deportes y sus descripciones
         $deportes = [
-            ['deporte' => 'Atletismo', 'descripcion' => 'Deporte que involucra carreras, saltos y lanzamientos'],
-            ['deporte' => 'Baloncesto', 'descripcion' => 'Deporte de equipo jugado en una cancha rectangular'],
-            ['deporte' => 'Ciclismo', 'descripcion' => 'Deporte que implica montar en bicicleta'],
-            ['deporte' => 'Fútbol', 'descripcion' => 'Deporte de equipo jugado con un balón en una cancha rectangular'],
-            ['deporte' => 'Fútbol Destrezas', 'descripcion' => 'Modalidad de fútbol que se centra en las habilidades individuales'],
-            ['deporte' => 'Gimnasia Artística', 'descripcion' => 'Deporte que involucra movimientos acrobáticos y de equilibrio'],
-            ['deporte' => 'Gimnasia Rítmica', 'descripcion' => 'Deporte que combina elementos de danza y gimnasia'],
-            ['deporte' => 'Natación', 'descripcion' => 'Deporte que implica nadar en agua'],
-            ['deporte' => 'Tenis', 'descripcion' => 'Deporte de raqueta jugado en una cancha rectangular'],
-            ['deporte' => 'Triathlón', 'descripcion' => 'Deporte que combina natación, ciclismo y carrera'],
-            ['deporte' => 'Voleibol', 'descripcion' => 'Deporte de equipo jugado en una cancha rectangular con una red en el medio'],
-            ['deporte' => 'Voleibol de Playa', 'descripcion' => 'Variante del voleibol jugado en la arena'],
+            ['deporte' => 'Atletismo', 'descripcion' => 'Deporte que involucra carreras, saltos y lanzamientos','icon'=>'sports_handball'],
+            ['deporte' => 'Fútbol', 'descripcion' => 'Deporte de equipo jugado con un balón en una cancha rectangular', 'icon'=>'sports_soccer'],
+            ['deporte' => 'Gimnasia Artística', 'descripcion' => 'Deporte que involucra movimientos acrobáticos y de equilibrio','icon'=>'sports_gymnastics'],
+            ['deporte' => 'Triathlón', 'descripcion' => 'Deporte que combina natación, ciclismo y carrera','icon'=>'directions_bike'],
+            ['deporte' => 'Levantamiento de Potencia', 'descripcion'=>'Deporte que consiste en levantar el mayor peso posible en una sola repetición','icon'=>'sports_soccer'],
         ];
 
         // Iterar sobre el array de deportes y crear registros en la base de datos

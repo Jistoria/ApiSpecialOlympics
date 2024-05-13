@@ -80,4 +80,11 @@ class SportmanService
     {
         return $this->sportman->find($id);
     }
+
+    public function activitiesAttach($id, $data)
+    {
+        $sportman = $this->sportman->find($id);
+        $sportman->actividades_deportivas()->sync($data);
+        return ['success'=>true, 'message'=>'Actividades asignadas correctamente'];
+    }
 }
