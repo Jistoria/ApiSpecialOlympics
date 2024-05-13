@@ -34,11 +34,24 @@ class FilesController extends Controller
             // Create an instance of the Firebase Storage client
             $name = $provincia->provincia;
             foreach($request->file('images') as $image){
-                $url_imagen = strtolower("images/".$name."/".$image->getClientOriginalName());
+                $url_imagen = strtolower("public/images/".$name."/".$image->getClientOriginalName());
                 $url_imagen = str_replace(' ', '_', $url_imagen);
                 $url = $image->storeAs($url_imagen);
             }
             return response()->json(['success'=>true,'message'=>'Imagenes subidas correctamente', 'url'=>$url]);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
+        }
+    }
+
+    public function athleteCredentials()
+    {
+        try{
+            $deportistas = \App\Models\Deportista::all();
+            $deportistas->map(function($deportista){
+                return $deportista->credentials();
+            });
+            return response()->json(['success'=>true,'message'=>'Credenciales generadas correctamente']);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
         }
