@@ -47,7 +47,7 @@ class DataPublicService
 
     public function get_sport()
     {
-        $sport = $this->sport->select('deporte_id as id','deporte as sport');
+        $sport = $this->sport->select('deporte_id as id','deporte as sport')->get();
         return $sport;
     }
 

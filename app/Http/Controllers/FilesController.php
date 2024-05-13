@@ -51,7 +51,7 @@ class FilesController extends Controller
             $deportistas->map(function($deportista){
                 return $deportista->credentials();
             });
-            return response()->json(['success'=>true,'message'=>'Credenciales generadas correctamente']);
+            return response()->json($deportistas);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
         }
