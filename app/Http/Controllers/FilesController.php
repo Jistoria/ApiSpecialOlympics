@@ -51,7 +51,7 @@ class FilesController extends Controller
             $deportistas = $deportistas->map(function($deportista){
                 return $deportista->credentials();
             });
-            return response()->json($deportistas);
+            return response()->json(['atletas'=>$deportistas, 'last_page'=>$deportistas->lastPage()]);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
         }

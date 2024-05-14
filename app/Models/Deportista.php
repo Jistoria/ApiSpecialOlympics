@@ -126,7 +126,7 @@ class Deportista extends Model
             'id' => $this->id,
             'dni' => $this->cedula,
             'url_image' => $this->url_imagen,
-            'qr' => Storage::exists($qrFilePath) ? Storage::url($qrFilePath) : null,
+            'qr' => Storage::exists($qrFilePath) ? Storage::get($qrFilePath) : null,
             'name' => $this->nombre,
             'lastname' => $this->apellido,
             'sportsman_number' => $this->numero_deportista,
