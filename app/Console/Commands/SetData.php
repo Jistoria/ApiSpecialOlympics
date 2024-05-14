@@ -32,6 +32,7 @@ class SetData extends Command
         $this->call('db:seed',['class'=>'ActividadesDeportivasSeeder']);
         $this->call('db:seed',['class'=>'LugaresSeeder']);
         $this->call('db:seed',['class'=>'TipoInvSeeder']);
+        $this->call('db:seed',['class'=>'HorarioCSeeder']);
         $this->call('roles:default');
         $this->call('create:admin');
         $this->call('create:roundsman');

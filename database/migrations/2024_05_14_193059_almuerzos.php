@@ -14,13 +14,15 @@ return new class extends Migration
         Schema::create('almuerzos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('deportista_id')->nullable();
-            $table->date('fecha');
-            $table->time('hora_inicio');
-            $table->time('hora_fin');
+            $table->unsignedBigInteger('horario_comida_id');
             $table->boolean('completado')->default(false);
             $table->unsignedBigInteger('invitado_id')->nullable();
             $table->timestamps();
 
+            $table->foreign('horario_comida_id')
+                ->references('id')
+                ->on('horario_comida')
+                ->onDelete('cascade');
             $table->foreign('invitado_id')
                 ->references('invitado_id')
                 ->on('invitados')
@@ -29,7 +31,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('deportistas')
                 ->onDelete('cascade');
-            $table->unique(['deportista_id', 'fecha']);
+            $table->unique(['deportista_id', 'horario_comida_id','invitado_id']);
         });
     }
 
@@ -38,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('almuerzos');
+        //
     }
 };

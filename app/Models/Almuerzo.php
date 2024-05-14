@@ -20,6 +20,10 @@ class Almuerzo extends Model
     ];
 
 
+    public function horarioComida()
+    {
+        return $this->belongsTo(HorarioComida::class);
+    }
     public function deportista()
     {
         return $this->belongsTo(Deportista::class);
