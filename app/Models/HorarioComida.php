@@ -17,6 +17,7 @@ class HorarioComida extends Model
         'hora_inicio',
         'hora_fin'
     ];
+    public $timestamps = false;
     public function almuerzos()
     {
         return $this->hasMany(Almuerzo::class);
