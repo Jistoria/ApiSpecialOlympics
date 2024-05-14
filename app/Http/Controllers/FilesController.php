@@ -48,10 +48,11 @@ class FilesController extends Controller
     {
         try{
             $deportistas = \App\Models\Deportista::paginate(4);
+            $last_page = $deportistas->lastPage();
             $deportistas = $deportistas->map(function($deportista){
                 return $deportista->credentials();
             });
-            return response()->json(['atletas'=>$deportistas, 'last_page'=>$deportistas->lastPage()]);
+            return response()->json(['atletas'=>$deportistas, 'last_page'=>$last_page]);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
         }
