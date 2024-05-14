@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //lugar_actividad_horario
-        Schema::create('eventos', function (Blueprint $table) {
+        //lugar_actividad_horario  evento
+        Schema::create('lugar_actividad_horario', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('lugar_id');
             $table->unsignedBigInteger('actividad_id');
