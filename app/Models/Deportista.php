@@ -122,10 +122,11 @@ class Deportista extends Model
     public function credentials()
     {
         $qrFilePath = 'public/qrcodes/' . $this->cedula;
+
         return [
             'id' => $this->id,
             'dni' => $this->cedula,
-            'url_image' => $this->url_imagen,
+            'url_image' => Storage::exists($this->url_imagen) ? Storage::get($this->url_imagen) : null,
             'qr' => Storage::exists($qrFilePath) ? Storage::get($qrFilePath) : null,
             'name' => $this->nombre,
             'lastname' => $this->apellido,
