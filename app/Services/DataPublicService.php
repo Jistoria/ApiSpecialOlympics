@@ -47,13 +47,13 @@ class DataPublicService
 
     public function get_sport()
     {
-        $sport = $this->sport->select('deporte_id as id','deporte as sport','icon','descripcion as description')->get();
+        $sport = $this->sport->select('deporte_id as id','deporte as name','icon','descripcion as description')->get();
         return $sport;
     }
 
     public function get_activity()
     {
-        $activity = $this->activity->select('actividad_id as id','actividad as activity')
+        $activity = $this->activity->select('actividad_id as id','actividad as name','deporte_id as sport','descripcion as description')
         ->get();
         return $activity;
     }

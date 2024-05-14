@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('deportista_id');
             $table->unsignedBigInteger('actividad_id');
+            $table->string('descripcion')->default('Sin descripción');
             $table->text('resultados')->default('Resultados no disponibles');
 
             $table->foreign('deportista_id')
