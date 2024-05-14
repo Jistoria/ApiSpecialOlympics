@@ -36,7 +36,11 @@ class DeportistaImport implements ToModel, WithHeadingRow, WithValidation
         $provincia_id= Provincia::select('provincia_id')->where('provincia','LIKE',$row['provincia'])->first();
         $nameParts = explode(',',$row['name']);
         $apellido = ucwords(strtolower($nameParts[0]));
+        $apellido = str_replace(['ñ', 'Ñ'], ['n', 'N'], $apellido);
+
         $name = ltrim(strtr($nameParts[1],['_'=>' ']));
+        $name = str_replace(['ñ', 'Ñ'], ['n', 'N'], $name);
+
         $cedula = $row['cedula'];
         $fechaNacimiento = Carbon::createFromFormat('d/m/Y', $row['dob'])->format('Y-m-d');
         $actividades = explode(', ', $row['evento']);
