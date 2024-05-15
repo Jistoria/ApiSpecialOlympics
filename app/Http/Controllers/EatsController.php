@@ -41,12 +41,14 @@ class EatsController extends Controller
     public function mark(Almuerzo $almuerzo)
     {
         try{
-            $horaInicio = Carbon::createFromFormat('H:i:s', $almuerzo->hora_inicio);
-            $horaFin = Carbon::createFromFormat('H:i:s', $almuerzo->hora_fin);
+            $almuerzo->load('horarioComida');
+            $horaInicio = Carbon::createFromFormat('H:i:s', $almuerzo->horarioComida->hora_inicio);
+            $horaFin = Carbon::createFromFormat('H:i:s', $almuerzo->horarioComida->hora_fin);
+
             // Obtener la fecha y hora actual en la zona horaria del servidor
             $now = Carbon::now(new DateTimeZone('America/Guayaquil'));
             // Verificar si la fecha del almuerzo es hoy y la hora actual está dentro del rango permitido
-            if ($now->isSameDay($almuerzo->fecha) && $now->between($horaInicio, $horaFin)) {
+            if ($now->isSameDay($almuerzo->horarioComida->fecha) && $now->between($horaInicio, $horaFin)) {
                 return response()->json(['message' => 'No se puede marcar el almuerzo fuera de la fecha y hora programada'], 422);
             }
 
