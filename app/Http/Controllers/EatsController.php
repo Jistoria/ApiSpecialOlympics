@@ -13,21 +13,19 @@ class EatsController extends Controller
     public function index(Deportista $deportista)
     {
         try{
-            $deportista->load('almuerzos');
+            $deportista->load('almuerzos','almuerzos.horarioComida')
+                ->whereHas('almuerzos.horarioComida',function($query){
+                    $query->whereDate('fecha',now()->toDateString());
+                });
 
-            // Filtrar los almuerzos para el día actual
-            $almuerzosDelDia = $deportista->almuerzos->filter(function ($almuerzo) {
-                return Carbon::parse($almuerzo->fecha)->isToday();
-            });
-
-            if ($almuerzosDelDia->isEmpty()) {
+            if ($deportista->almuerzos->isEmpty()) {
                 // No se encontraron almuerzos para el día actual
                 return response()->json(['message' => 'No se encontraron almuerzos para hoy'], 404);
             }
 
             return response()->json(['success'=>true,'deportista'=>$deportista]);
         }catch(\Exception $e){
-            return response()->json(['message'=>'Ha ocurrido un error'],500);
+            return response()->json(['message'=>'Ha ocurrido un error','error'=> $e->getMessage()],500);
         }
     }
     public function mark(Almuerzo $almuerzo)
