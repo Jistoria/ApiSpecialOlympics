@@ -20,7 +20,7 @@ class FilesController extends Controller
             Excel::import(new DataImport,$request->file('excelLoad'),null, \Maatwebsite\Excel\Excel::XLSX);
             return response()->json(['success'=>true,'message'=>'Deportistas importados correctamente']);
         }catch(\Maatwebsite\Excel\Validators\ValidationException $e){
-            return response()->json(['success'=>false,'message'=>$e->failures()],422);
+            return response()->json(['success'=>false,'codigo'=>'422','message'=>$e->failures()],422);
         }
     }
 
@@ -41,7 +41,7 @@ class FilesController extends Controller
             }
             return response()->json(['success'=>true,'message'=>'Imagenes subidas correctamente', 'url'=>$url]);
         }catch(\Exception $e){
-            return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
+            return response()->json(['success'=>false,'codigo'=>'500','message'=>$e->getMessage()],500);
         }
     }
 
@@ -55,7 +55,7 @@ class FilesController extends Controller
             });
             return response()->json(['atletas'=>$deportistas, 'last_page'=>$last_page]);
         }catch(\Exception $e){
-            return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
+            return response()->json(['success'=>false,'codigo'=>'500','message'=>$e->getMessage()],500);
         }
     }
 }

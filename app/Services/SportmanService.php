@@ -87,4 +87,9 @@ class SportmanService
         $sportman->actividades_deportivas()->sync($data);
         return ['success'=>true, 'message'=>'Actividades asignadas correctamente'];
     }
+
+    public function pluckSport()
+    {
+        return $this->sportman->select('id', 'nombre', 'apellido')->get();
+    }
 }

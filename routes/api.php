@@ -11,6 +11,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\TypeGuestController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\LunchController;
+use App\Http\Controllers\LunchDateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +52,7 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
     Route::resource('sportman', SportmanController::class);
     Route::post('sportman_active/{deportista}',[SportmanController::class,'active']);
     Route::post('sportman_activities/{deportista}',[SportmanController::class,'activitiesAttach']);
+    Route::get('sportman_pluck',[SportmanController::class,'pluck']);
     //crudcito de deportes
     Route::get('/get_deporte', [SportController::class, 'index']);
     route::post('/store_deporte', [SportController::class, 'store']);
@@ -83,7 +86,12 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
     //Rutas para archivos
     Route::post('/deportista_import',[FilesController::class,'deportistaImport']);
     Route::post('/deportista_images/{provincia}',[FilesController::class,'deportistaImages']);
-
+    //Rutas para almuerzos
+    Route::get('/lunch_get',[LunchController::class,'index']);
+    Route::post('/lunch_store',[LunchController::class,'store']);
+    Route::delete('/lunch_delete',[LunchController::class,'delete']);
+    //Ruta para Horario de comida
+    Route::get('/lunch_date',[LunchDateController::class,'index']);
     //DataPDF
     Route::get('credentials_athlete',[FilesController::class,'athleteCredentials']);
 });
