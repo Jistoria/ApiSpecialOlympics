@@ -16,14 +16,24 @@ class EatsController extends Controller
             $deportista->load('almuerzos','almuerzos.horarioComida')
                 ->whereHas('almuerzos.horarioComida',function($query){
                     $query->whereDate('fecha',now()->toDateString());
-                });
+                })->select('id', 'nombre', 'apellido', 'numero_deportista');
 
             if ($deportista->almuerzos->isEmpty()) {
                 // No se encontraron almuerzos para el día actual
                 return response()->json(['message' => 'No se encontraron almuerzos para hoy'], 404);
             }
+            $dataDeportista = [
+                'id' => $deportista->id,
+                'cedula' => $deportista->cedula,
+                'nombre' => $deportista->nombre,
+                'apellido' => $deportista->apellido,
+                'numero_deportista' => $deportista->numero_deportista,
+                'almuerzos' => $deportista->almuerzos,
+                'url_imagen' => $deportista->url_imagen,
+            ];
 
-            return response()->json(['success'=>true,'deportista'=>$deportista]);
+
+            return response()->json(['success'=>true,'deportista'=>$dataDeportista]);
         }catch(\Exception $e){
             return response()->json(['message'=>'Ha ocurrido un error','error'=> $e->getMessage()],500);
         }
