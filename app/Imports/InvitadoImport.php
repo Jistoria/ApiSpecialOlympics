@@ -31,8 +31,9 @@ class InvitadoImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         $provincia_id= Provincia::select('provincia_id')->where('provincia','LIKE',$row['provincia'])->first();
-        $nameParts = explode(' ',$row['name']);
-        $total_name = ucwords(strtolower($nameParts[0])).$nameParts[1];
+        $nameParts = explode(', ',$row['name']);
+        $lastname = ucwords(strtolower($nameParts[0]));
+        $name = ucwords(strtolower($nameParts[1]));
         $fechaNacimiento = Carbon::createFromFormat('d/m/Y', $row['dob'])->format('Y-m-d');
          // Generar el código QR
         $qrCode = QrCode::size(300)->generate($row['cedula']);
@@ -41,7 +42,8 @@ class InvitadoImport implements ToModel, WithHeadingRow
         Storage::put('public/qrcodes/' . $fileName, $qrCode);
         return new Invitado([
             'cedula' => $row['cedula'],
-            'nombre' => $row['name'],
+            'nombre' => $name,
+            'apellido' => $lastname,
             'genero' => $row['gen'],
             'edad' => $row['age'],
             'fecha_nacimiento' => $fechaNacimiento,
