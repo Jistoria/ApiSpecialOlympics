@@ -79,7 +79,7 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
     Route::get('/get_guestf/{tipo_invitado_id}', [GuestController::class, 'indexf']);
     Route::get('/get_find/{nombreCompleto}', [GuestController::class, 'show']);
     route::post('/store_guest', [GuestController::class, 'store']);
-    route::delete('/delete_guest/{invitado}', [GuestController::class, 'delete']);
+    route::post('/delete_guest/{invitado}', [GuestController::class, 'delete']);
     route::put('/update_guest/{invitado}', [GuestController::class, 'update']);
     //crudcito de provincia
     Route::get('/get_provincia', [ProvinceController::class, 'index']);
