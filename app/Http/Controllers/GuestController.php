@@ -30,7 +30,7 @@ class GuestController extends Controller
         $guests = Invitado::where('nombre', 'like', "%$nombreCompleto%")
                           ->orWhere('apellido', 'like', "%$nombreCompleto%")
                           ->paginate(5);
-    
+
         if ($guests->isEmpty()) {
             return response()->json(['success'=>'false','error' => 'Invitados no encontrados'], 404);
         } else {
@@ -65,7 +65,7 @@ class GuestController extends Controller
         try {
             // Buscar al invitado por su ID
             $guest = Invitado::find($id);
-    
+
             if ($guest) {
                 // Verificar si el invitado ya está deshabilitado
                 if (!$guest->activo) {

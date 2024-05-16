@@ -58,4 +58,18 @@ class FilesController extends Controller
             return response()->json(['success'=>false,'codigo'=>'500','message'=>$e->getMessage()],500);
         }
     }
+
+    public function guestCredentials()
+    {
+        try{
+            $invitados = \App\Models\Invitado::paginate(4);
+            $last_page = $invitados->lastPage();
+            $invitados = $invitados->map(function($invitado){
+                return $invitado->credentials();
+            });
+            return response()->json(['invitados'=>$invitados, 'last_page'=>$last_page]);
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'codigo'=>'500','message'=>$e->getMessage()],500);
+        }
+    }
 }

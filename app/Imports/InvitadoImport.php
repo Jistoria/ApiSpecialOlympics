@@ -8,10 +8,12 @@ use App\Models\Provincia;
 use App\Models\TipoInvitado;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class InvitadoImport implements ToModel, WithHeadingRow
 {
@@ -32,6 +34,11 @@ class InvitadoImport implements ToModel, WithHeadingRow
         $nameParts = explode(' ',$row['name']);
         $total_name = ucwords(strtolower($nameParts[0])).$nameParts[1];
         $fechaNacimiento = Carbon::createFromFormat('d/m/Y', $row['dob'])->format('Y-m-d');
+         // Generar el código QR
+        $qrCode = QrCode::size(300)->generate($row['cedula']);
+         // Guardar el código QR en el almacenamiento (storage)
+        $fileName = $row['cedula'] ; // Nombre del archivo basado en la cédula
+        Storage::put('public/qrcodes/' . $fileName, $qrCode);
         return new Invitado([
             'cedula' => $row['cedula'],
             'nombre' => $row['name'],

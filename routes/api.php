@@ -94,6 +94,7 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
     Route::get('/lunch_date',[LunchDateController::class,'index']);
     //DataPDF
     Route::get('credentials_athlete',[FilesController::class,'athleteCredentials']);
+    Route::get('credentials_guest',[FilesController::class,'guestCredentials']);
 });
 
 //Rutas publicas
