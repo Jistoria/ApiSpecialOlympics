@@ -16,19 +16,29 @@ class LugaresSeeder extends Seeder
         // Array con los datos de los lugares
         $lugares = [
             [
-                'nombre' => 'Estadio Olímpico',
+                'nombre' => 'Uleam',
                 'descripcion' => 'Estadio dedicado a eventos deportivos y culturales',
+                'url_images' => json_encode(['{public/images/uleam_entrada_uno.jpg','public/images/uleam_plaza.jpg}']),
             ],
             [
-                'nombre' => 'Polideportivo Municipal',
+                'nombre' => 'Uleam Pista Atletica',
+                'descripcion' => 'Estadio dedicado a eventos deportivos y culturales',
+                'url_images' => json_encode(['{public/images/uleam_pista_atletica.jpg','public/images/uleam_pista_atletica2.jpg}']),
+            ],
+            [
+                'nombre' => 'Piscina Olímpica de L.D.C - Manta  complejo deportivo Tohalli',
                 'descripcion' => 'Instalación deportiva para diversas disciplinas',
             ],
             [
-                'nombre' => 'Gimnasio Recreativo',
+                'nombre' => 'Hotel Windham',
                 'descripcion' => 'Espacio para actividades físicas y recreativas',
             ],
             [
-                'nombre' => 'Centro Acuático',
+                'nombre' => 'Cancha Sintética Fulbito Full Soccer',
+                'descripcion' => 'Instalación para deportes acuáticos y natación',
+            ],
+            [
+                'nombre' => 'Cancha Sintetica Fulbito Full Soccer',
                 'descripcion' => 'Instalación para deportes acuáticos y natación',
             ],
             // Agrega más lugares según sea necesario

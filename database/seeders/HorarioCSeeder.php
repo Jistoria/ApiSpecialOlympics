@@ -22,8 +22,8 @@ class HorarioCSeeder extends Seeder
             [
                 'horario' => 'Almuerzo día 2',
                 'fecha' => '2024-05-16',
-                'hora_inicio' => '12:00:00',
-                'hora_fin' => '14:00:00'
+                'hora_inicio' => '14:15:00',
+                'hora_fin' => '15:00:00'
             ],
             [
                 'horario' => 'Almuerzo día 3',
