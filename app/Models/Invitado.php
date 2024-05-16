@@ -28,7 +28,7 @@ class Invitado extends Model
     }
     protected $table = 'invitados';
     protected $primaryKey = 'invitado_id';
-    protected $fillable = ['provincia_id','tipo_invitado_id','nombre','apellido','deporte_id','fecha_nacimiento','cedula','edad','genero','url_imagens','activo'];
+    protected $fillable = ['provincia_id','tipo_invitado_id','nombre','apellido','deporte_id','fecha_nacimiento','cedula','edad','genero','url_imagen','activo'];
     //Relacion a provincia
     public function provincia(){
         return $this->belongsTo(Provincia::class,'provincia_id','provincia_id');
