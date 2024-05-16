@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('provincia_id')->nullable();
             $table->unsignedBigInteger('tipo_invitado_id');
             $table->string('nombre');
+            $table->string('apellido');
             $table->integer('edad');
             $table->enum('genero',['M','F']);
             $table->date('fecha_nacimiento');

@@ -14,15 +14,15 @@ class Invitado extends Model
     {
         parent::boot();
 
-        static::creating(function ($deportista) {
+        static::creating(function ($guest) {
              // Generar el código QR
-            $cdl = $deportista->cedula;
+            $cdl = $guest->cedula;
             $qrCode = QrCode::size(300)->generate($cdl);
              // Guardar el código QR en el almacenamiento (storage)
             $fileName = $cdl; // Nombre del archivo basado en la cédula
             Storage::put('public/qrcodes/' . $fileName, $qrCode);
         });
-        static::updating(function ($deportista) {
+        static::updating(function ($guest) {
 
         });
     }
