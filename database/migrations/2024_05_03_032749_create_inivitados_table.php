@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->integer('edad');
+            $table->string('url_imagen')->nullable();
             $table->enum('genero',['M','F']);
             $table->date('fecha_nacimiento');
             $table->boolean('activo')->default(true);

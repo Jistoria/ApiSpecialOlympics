@@ -40,11 +40,14 @@ class InvitadoImport implements ToModel, WithHeadingRow
          // Guardar el código QR en el almacenamiento (storage)
         $fileName = $row['cedula'] ; // Nombre del archivo basado en la cédula
         Storage::put('public/qrcodes/' . $fileName, $qrCode);
+        $url_imagen = strtolower("storage/images/".$row['provincia']."/"."$lastname $name $fileName.jpg");
+        $url_imagen = str_replace(' ', '_', $url_imagen);
         return new Invitado([
             'cedula' => $row['cedula'],
             'nombre' => $name,
             'apellido' => $lastname,
             'genero' => $row['gen'],
+            'url_imagen' => $url_imagen,
             'edad' => $row['age'],
             'fecha_nacimiento' => $fechaNacimiento,
             'deporte_id' => $this->deportes[$row['deporte']]??null,
