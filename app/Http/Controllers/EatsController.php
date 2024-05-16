@@ -30,7 +30,7 @@ class EatsController extends Controller
                 'nombre' => $data->nombre,
                 'apellido' => $data->apellido,
                 'almuerzos' => $data->almuerzos,
-                'url_imagen' => $data->url_imagen,
+                'url_image' => $data->url_imagen,
             ];
 
 
