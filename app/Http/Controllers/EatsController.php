@@ -53,11 +53,10 @@ class EatsController extends Controller
             $now = Carbon::now(new DateTimeZone('America/Guayaquil'));
             // Verificar si la fecha del almuerzo es hoy y la hora actual está dentro del rango permitido
             if ($now->isSameDay($almuerzo->horarioComida->fecha) && $now->between($horaInicio, $horaFin)) {
-                return response()->json(['message' => 'No se puede marcar el almuerzo fuera de la fecha y hora programada'], 422);
+                $almuerzo->update(['completado'=>1]);
+                return response()->json(['message'=>'Almuerzo marcado como completado']);
             }
-
-            $almuerzo->update(['completado'=>1]);
-            return response()->json(['message'=>'Almuerzo marcado como completado']);
+            return response()->json(['message' => 'No se puede marcar el almuerzo fuera de la fecha y hora programada'], 422);
         }catch(\Exception $e){
             return response()->json(['message' => 'Error al marcar el almuerzo como completado','e'=>$e->getMessage()], 500);
         }
