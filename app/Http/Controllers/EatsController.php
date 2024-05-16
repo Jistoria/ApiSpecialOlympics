@@ -46,11 +46,12 @@ class EatsController extends Controller
     {
         try{
             $almuerzo->load('horarioComida');
-            $horaInicio = Carbon::createFromFormat('H:i:s', $almuerzo->horarioComida->hora_inicio);
-            $horaFin = Carbon::createFromFormat('H:i:s', $almuerzo->horarioComida->hora_fin);
+            $horaInicio = Carbon::createFromFormat('H:i:s', $almuerzo->horarioComida->hora_inicio,'America/Guayaquil');
+            $horaFin = Carbon::createFromFormat('H:i:s', $almuerzo->horarioComida->hora_fin,'America/Guayaquil');
 
             // Obtener la fecha y hora actual en la zona horaria del servidor
             $now = Carbon::now(new DateTimeZone('America/Guayaquil'));
+
             // Verificar si la fecha del almuerzo es hoy y la hora actual está dentro del rango permitido
             if ($now->isSameDay($almuerzo->horarioComida->fecha) && $now->between($horaInicio, $horaFin)) {
                 $almuerzo->update(['completado'=>1]);

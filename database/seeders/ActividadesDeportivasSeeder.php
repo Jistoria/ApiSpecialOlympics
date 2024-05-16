@@ -47,6 +47,8 @@ class ActividadesDeportivasSeeder extends Seeder
             'Natación' => [
                 'AQ 25 M' => 'Natación en piscina de 25 metros.',
                 'AQ 50 M' => 'Natación en piscina de 50 metros.',
+                'AQ 100 M' => 'Natación en piscina de 100 metros',
+                'AQ 200 M' => 'Natación en piscina de 200 metros',
                 'AQ 4 X 25 Relevos' => 'Relevos de natación en piscina de 4x25 metros.',
                 'AQ 50 M Pecho' => 'Natación estilo pecho en piscina de 50 metros.',
                 'AQ 50 M Libre' => 'Natación estilo libre en piscina de 50 metros.',
@@ -56,7 +58,6 @@ class ActividadesDeportivasSeeder extends Seeder
                 'AQ 50 M Espalda' => 'Natación estilo espalda en piscina de 50 metros.',
                 'AQ 100 M Espalda' => 'Natación estilo espalda en piscina de 100 metros.',
                 'AQ 100 M Pecho' => 'Natación estilo pecho en piscina de 100 metros.',
-                'AQ 100 M Mariposa' => 'Natación estilo mariposa en piscina de 100 metros.',
                 'AQ 200 M Combinado' => 'Natación estilo combinado en piscina de 200 metros.',
             ],
             'Gimnasia Artística' => [
