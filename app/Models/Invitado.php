@@ -38,6 +38,11 @@ class Invitado extends Model
         return $this->belongsTo(TipoInvitado::class,'tipo_invitado_id','tipo_invitado_id');
     }
 
+    public function almuerzos()
+    {
+        return $this->hasMany(Almuerzo::class,'invitado_id');
+    }
+
     public function credentials()
     {
         $qrFilePath = 'public/qrcodes/' . $this->cedula;

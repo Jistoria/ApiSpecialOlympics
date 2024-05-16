@@ -42,7 +42,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
 //Ruta solo para repartidor
 Route::middleware(['auth:sanctum','role:Voluntario'])->group(function(){
-    Route::get('eats/{deportista}',[EatsController::class,'index']);
+    Route::get('eats/{cedula}',[EatsController::class,'index']);
     Route::post('eats',[EatsController::class,'store']);
     Route::put('eats/{eats}',[EatsController::class,'update']);
     Route::post('eats_mark/{almuerzo}',[EatsController::class,'mark']);

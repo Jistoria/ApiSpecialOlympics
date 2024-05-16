@@ -4,36 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Models\Almuerzo;
 use App\Models\Deportista;
+use App\Models\Invitado;
 use Carbon\Carbon;
 use DateTimeZone;
 use Illuminate\Http\Request;
 
 class EatsController extends Controller
 {
-    public function index(Deportista $deportista)
+    public function index($cedula)
     {
         try{
-            $deportista->load('almuerzos','almuerzos.horarioComida')
+            $data = Invitado::where('cedula',$cedula)->first() ?? Deportista::where('cedula',$cedula)->first();
+            $data->load('almuerzos','almuerzos.horarioComida')
                 ->whereHas('almuerzos.horarioComida',function($query){
                     $query->whereDate('fecha',now()->toDateString());
                 })->select('id', 'nombre', 'apellido', 'numero_deportista');
 
-            if ($deportista->almuerzos->isEmpty()) {
+            if ($data->almuerzos->isEmpty()) {
                 // No se encontraron almuerzos para el día actual
                 return response()->json(['message' => 'No se encontraron almuerzos para hoy'], 404);
             }
-            $dataDeportista = [
-                'id' => $deportista->id,
-                'cedula' => $deportista->cedula,
-                'nombre' => $deportista->nombre,
-                'apellido' => $deportista->apellido,
-                'numero_deportista' => $deportista->numero_deportista,
-                'almuerzos' => $deportista->almuerzos,
-                'url_imagen' => $deportista->url_imagen,
+            $dataProfile = [
+                'id' => $data->id ?? $data->invitado_id,
+                'cedula' => $data->cedula,
+                'nombre' => $data->nombre,
+                'apellido' => $data->apellido,
+                'almuerzos' => $data->almuerzos,
+                'url_imagen' => $data->url_imagen,
             ];
 
 
-            return response()->json(['success'=>true,'deportista'=>$dataDeportista]);
+            return response()->json(['success'=>true,'data'=>$dataProfile]);
         }catch(\Exception $e){
             return response()->json(['message'=>'Ha ocurrido un error','error'=> $e->getMessage()],500);
         }
