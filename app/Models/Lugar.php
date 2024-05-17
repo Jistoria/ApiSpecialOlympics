@@ -12,7 +12,7 @@ class Lugar extends Model
 
     protected $primaryKey = 'lugar_id';
 
-    protected $fillable = ['nombre', 'descripcion'];
+    protected $fillable = ['nombre', 'descripcion','url_images'];
 
     protected $hidden = ['created_at', 'updated_at'];
 

@@ -77,7 +77,7 @@ class DataPublicService
 
     public function get_place()
     {
-        $lugar = $this->place->select('lugares_id as id','nombre as name','descripcion as description','url_images')->get();
+        $lugar = $this->place->select('lugar_id as id','nombre as name','descripcion as description','url_images')->get();
         return $lugar;
     }
 }
