@@ -102,3 +102,4 @@ Route::get('/athlete',[DataPublicController::class,'get_sportman']);
 Route::get('/sport',[DataPublicController::class,'get_sport']);
 Route::get('/activity',[DataPublicController::class,'get_activity']);
 Route::get('/address',[DataPublicController::class,'get_address']);
+Route::get('/place',[DataPublicController::class,'get_place']);
