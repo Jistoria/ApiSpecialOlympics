@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\ActividadDeportiva;
 use App\Models\Deporte;
 use App\Models\Deportista;
+use App\Models\Lugar;
 use Illuminate\Support\Facades\DB;
 
 class DataPublicService
@@ -12,12 +13,14 @@ class DataPublicService
     private $sportman;
     private $sport;
 
+    private $address;
     private $activity;
-    public function __construct(Deportista $sportman, Deporte $sport, ActividadDeportiva $activity)
+    public function __construct(Deportista $sportman, Deporte $sport, ActividadDeportiva $activity, Lugar $lugar)
     {
         $this->sportman = $sportman;
         $this->sport = $sport;
         $this->activity = $activity;
+        $this->address = $lugar;
     }
 
     public function get_sportman()
@@ -56,5 +59,11 @@ class DataPublicService
         $activity = $this->activity->select('actividad_id as id','actividad as name','deporte_id as sport','descripcion as description')
         ->get();
         return $activity;
+    }
+
+    public function get_address()
+    {
+        $lugar = $this->address->select('lugar_id as id','nombre as name','descripcion as description','url_images')->get();
+        return $lugar;
     }
 }

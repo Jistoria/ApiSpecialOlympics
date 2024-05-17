@@ -115,7 +115,7 @@ class Deportista extends Model
             'age' => $this->edad,
             'gender' => $this->genero,
             'birthday' => $this->fecha_nacimiento->format($this->formato),
-            'img_url' => $this->url_imagen,
+            'img_url' => 'https://specialolimpics--production-jistoria.sierranegra.cloud/'.$this->url_imagen,
         ];
     }
 
