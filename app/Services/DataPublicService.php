@@ -42,7 +42,7 @@ class DataPublicService
             'gender' => $item->genero,
             'sportsman_number' => $item->numero_deportista,
             'birthday' => $item->fecha_nacimiento,
-            'img_url' => $item->url_imagen,
+            'img_url' => 'https://specialolimpics--production-jistoria.sierranegra.cloud/'.$item->url_imagen,
             'address' => optional($item->provincia)->provincia, // Nombre de la provincia
         ];
     });
