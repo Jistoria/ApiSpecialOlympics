@@ -16,6 +16,10 @@ class Lugar extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
+protected $casts = [
+        'url_images' => 'array',
+    ];
+
     public function actividadDeportiva()
     {
         return $this->belongsToMany(ActividadDeportiva::class);
