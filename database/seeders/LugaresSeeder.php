@@ -18,7 +18,7 @@ class LugaresSeeder extends Seeder
             [
                 'nombre' => 'Uleam',
                 'descripcion' => 'Estadio dedicado a eventos deportivos y culturales',
-                'url_images' => json_encode(['{public/images/uleam_entrada_uno.jpg','public/images/uleam_plaza.jpg}']),
+                'url_images' => json_encode(['public/images/uleam_entrada_uno.jpg','public/images/uleam_plaza.jpg']),
             ],
             [
                 'nombre' => 'Uleam Pista Atletica',
