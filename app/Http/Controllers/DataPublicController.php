@@ -66,7 +66,7 @@ class DataPublicController extends Controller
     {
         try{
             $lugar = $this->dataService->get_place();
-            return response()->json($lugar);
+            return response()->json($lugar,200,[],JSON_UNESCAPED_SLASHES);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
         }
