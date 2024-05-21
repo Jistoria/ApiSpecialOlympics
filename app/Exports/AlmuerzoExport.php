@@ -8,12 +8,16 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\FromQuery;
 class AlmuerzoExport implements FromQuery
 {
-    public function __construct(private $date = $date)
-    {}
+    protected $date;
+    public function __construct($date)
+    {
+        $this->date = $date;
+    }
+
 
     public function query()
     {
-        return Almuerzo::query()->where('fecha', $this->date);
+        return Almuerzo::query()->where('horario_comida_id', $this->date);
     }
 }
 

@@ -87,10 +87,10 @@ class FilesController extends Controller
     {
         try{
             $request->validate([
-                'date' => 'required|date',
+                'horario_id' => 'required|exists:horario_comida,id',
             ]);
 
-            $date = $request->date;
+            $date = $request->horario_id;
             return Excel::download(new AlmuerzoExport($date), 'almuerzo.xlsx');
         }catch(\Exception $e){
             return response()->json(['success'=>false,'codigo'=>'500','message'=>$e->getMessage()],500);
