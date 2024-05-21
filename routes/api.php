@@ -95,6 +95,7 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
     //DataPDF
     Route::get('credentials_athlete',[FilesController::class,'athleteCredentials']);
     Route::get('credentials_guest',[FilesController::class,'guestCredentials']);
+    Route::post('launch_export',[FilesController::class,'launchExport']);
 });
 
 //Rutas publicas

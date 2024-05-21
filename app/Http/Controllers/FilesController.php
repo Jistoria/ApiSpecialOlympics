@@ -50,7 +50,7 @@ class FilesController extends Controller
     {
         try{
             $deportistas = \App\Models\Deportista::
-            when(request()->has('provincia_id'), function($query){
+            when(request('provincia_id'), function($query){
                 $query->where('provincia_id', request('provincia_id'));
             })
             ->paginate(4);
@@ -69,7 +69,7 @@ class FilesController extends Controller
     {
         try{
             $invitados = \App\Models\Invitado::
-            when(request()->has('provincia_id'), function($query){
+            when(request('provincia_id'), function($query){
                 $query->where('provincia_id', request('provincia_id'));
             })
             ->paginate(4);
