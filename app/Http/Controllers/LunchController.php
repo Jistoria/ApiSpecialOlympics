@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Almuerzo;
+use App\Models\HorarioComida;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -18,15 +19,21 @@ class LunchController extends Controller
         try {
             $request->validate([
                 'array' => 'required|array',
-                'horario_comida_id' => 'required',
+                'horario_comida_id' => 'required|exists:horario_comida,id',
                 'type' => 'required|in:1,2', // Asegura que el valor de 'type' sea 1 o 2
+                'time_start' => 'required|date_format:H:i',
+                'time_end' => 'required|date_format:H:i',
             ]);
-            
+
             $horario_comida_id = $request->horario_comida_id;
+            HorarioComida::where('id', $horario_comida_id)->update([
+                'hora_inicio' => $request->time_start,
+                'hora_fin' => $request->time_end,
+            ]);
             $type = $request->type;
-            
+
             $usuariosConAlmuerzo = []; // Lista para almacenar usuarios con almuerzos
-            
+
             foreach ($request->array as $id) {
                 // Verificar si ya existe un almuerzo para este usuario en el mismo horario de comida
                 $almuerzoExistente = Almuerzo::where('horario_comida_id', $horario_comida_id)
@@ -38,13 +45,13 @@ class LunchController extends Controller
                         }
                     })
                     ->first();
-            
+
                 // Si ya existe un almuerzo para este usuario en el mismo horario de comida, agrega el usuario a la lista y continúa con el siguiente usuario
                 if ($almuerzoExistente) {
                     $usuariosConAlmuerzo[] = $id;
                     continue;
                 }
-            
+
                 // Crear el registro de almuerzo para este usuario
                 Almuerzo::create([
                     'type' => $type,
@@ -52,11 +59,11 @@ class LunchController extends Controller
                     'horario_comida_id' => $horario_comida_id,
                 ]);
             }
-            
+
             if (!empty($usuariosConAlmuerzo)) {
                 return response()->json(['success' => false, 'message' => 'Algunos usuarios ya tienen almuerzo en este horario', 'usuarios_con_almuerzo' => $usuariosConAlmuerzo], 400);
             }
-            
+
             return response()->json(['success' => true, 'message' => 'Creado el almuerzo exitosamente'], 200);
         }  catch (Exception $e) {
             // Manejo de excepciones
@@ -73,7 +80,7 @@ class LunchController extends Controller
                 $deportistasIds = DB::table('almuerzos')
                     ->where('horario_comida_id', $request->horario_comida_id)
                     ->pluck('deportista_id');
-        
+
                 // Elimina los almuerzos donde el ID del deportista coincide con los IDs obtenidos
                 DB::table('almuerzos')
                     ->whereIn('deportista_id', $deportistasIds)
@@ -84,7 +91,7 @@ class LunchController extends Controller
                 $invitadosIds = DB::table('almuerzos')
                     ->where('horario_comida_id', $request->horario_comida_id)
                     ->pluck('invitado_id');
-        
+
                 // Elimina los almuerzos donde el ID del invitado coincide con los IDs obtenidos
                 DB::table('almuerzos')
                     ->whereIn('invitado_id', $invitadosIds)

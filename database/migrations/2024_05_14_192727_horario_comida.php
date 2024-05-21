@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('horario', 50);
             $table->date('fecha');
-            $table->time('hora_inicio');
-            $table->time('hora_fin');
+            $table->time('hora_inicio')->nullable();
+            $table->time('hora_fin')->nullable();
         });
     }
 

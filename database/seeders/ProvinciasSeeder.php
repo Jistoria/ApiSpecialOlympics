@@ -15,29 +15,32 @@ class ProvinciasSeeder extends Seeder
     {
          // Array con nombres de las provincias del Ecuador
         $provincias = [
-            'OE. AZUAY',
-            'OE. BOLIVAR',
-            'OE. CAÑAR',
-            'OE. CARCHI',
-            'OE. COTOPAXI',
-            'OE. CHIMBORAZO',
-            'OE. EL ORO',
-            'OE. ESMERALDAS',
-            'OE. GALAPAGOS',
-            'OE. GUAYAS',
-            'OE. IMBABURA',
-            'OE. LOJA',
-            'OE. LOS RIOS',
-            'OE. MANABI',
-            'OE. MORONA SANTIAGO',
-            'OE. NAPO',
-            'OE. PASTAZA',
-            'OE. PICHINCHA',
-            'OE. SANTA ELENA',
-            'OE. SANTO DOMINGO DE LOS TSACHILAS',
-            'OE. SUCUMBIOS',
-            'OE. TUNGURAHUA',
-            'OE. ZAMORA CHINCHIPE'
+            'OE. Azuay',
+            'OE. Bolívar',
+            'OE. Cañar',
+            'OE. Carchi',
+            'OE. Chimborazo',
+            'OE. Cotopaxi',
+            'OE. El Oro',
+            'OE. Esmeraldas',
+            'OE. Galápagos',
+            'OE. Guayas',
+            'OE. Imbabura',
+            'OE. Loja',
+            'OE. Los Ríos',
+            'OE. Manabí',
+            'OE. Morona Santiago',
+            'OE. Napo',
+            'OE. Orellana',
+            'OE. Pastaza',
+            'OE. Pichincha',
+            'OE. Santa Elena',
+            'OE. Santo Domingo de los Tsáchilas',
+            'OE. Sucumbíos',
+            'OE. Tungurahua',
+            'OE. Zamora Chinchipe'
+
+
         ];
 
         // Iterar sobre el array de provincias y crear registros en la base de datos

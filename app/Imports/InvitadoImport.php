@@ -34,7 +34,7 @@ class InvitadoImport implements ToModel, WithHeadingRow
         $nameParts = explode(', ',$row['name']);
         $lastname = ucwords(strtolower($nameParts[0]));
         $name = ucwords(strtolower($nameParts[1]));
-        $fechaNacimiento = Carbon::createFromFormat('d/m/Y', $row['dob'])->format('Y-m-d');
+        $fechaNacimiento = $row['dob'] ? Carbon::createFromFormat('d/m/Y', $row['dob'])->format('Y-m-d') : null;
          // Generar el código QR
         $cedula = $row['cedula'];
         $qrCode = QrCode::size(300)->generate($cedula);
@@ -65,11 +65,11 @@ class InvitadoImport implements ToModel, WithHeadingRow
     public function rules(): array
     {
         return [
-            'name' => 'required|regex:/^[a-zA-ZñÑ,_\s]*$/',
+            'name' => 'required',
             'cedula' => ['required','unique:invitados,cedula'],
-            'dob' => 'required|date_format:d/m/Y',
+
             'gen' => 'required|in:M,F',
-            'age' => 'required|numeric',
+
         ];
     }
 }

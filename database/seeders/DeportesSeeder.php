@@ -17,7 +17,7 @@ class DeportesSeeder extends Seeder
         $deportes = [
             ['deporte' => 'Atletismo', 'descripcion' => 'Deporte que involucra carreras, saltos y lanzamientos','icon'=>'sports_handball'],
             ['deporte' => 'Fútbol', 'descripcion' => 'Deporte de equipo jugado con un balón en una cancha rectangular', 'icon'=>'sports_soccer'],
-            ['deporte' => 'Triathlón', 'descripcion' => 'Deporte que combina natación, ciclismo y carrera','icon'=>'directions_bike'],
+            ['deporte' => 'Triatlón', 'descripcion' => 'Deporte que combina natación, ciclismo y carrera','icon'=>'directions_bike'],
             ['deporte' => 'Levantamiento de Potencia', 'descripcion'=>'Deporte que consiste en levantar el mayor peso posible en una sola repetición','icon'=>'sports_soccer'],
             ['deporte' => 'Natación', 'descripcion'=>'Deporte para demostrar tus destrezas en el agua','icon'=>'pool'],
             ['deporte' => 'Gimnasia Rítmica', 'descripcion'=>'Deporte para demostrar tu concentración y tiempo','icon'=>'sports_gymnastics'],

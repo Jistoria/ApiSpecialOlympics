@@ -12,7 +12,7 @@ class DataImport implements WithMultipleSheets
     {
         return [
             'Atletas' => new DeportistaImport(),
-            'Entrenadores' => new InvitadoImport(),
+            'Entrenador' => new InvitadoImport(),
         ];
     }
 }

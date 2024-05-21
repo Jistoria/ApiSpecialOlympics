@@ -27,9 +27,9 @@ return new class extends Migration
                 ->onDelete('restrict');
             $table->string('nombre');
             $table->string('apellido');
-            $table->integer('edad');
+            $table->integer('edad')->nullable();
             $table->enum('genero',['M','F']);
-            $table->date('fecha_nacimiento');
+            $table->date('fecha_nacimiento')->nullable();
             $table->string('url_imagen');
             $table->boolean('activo')->default(true);
             $table->string('lugar_hospedaje')->nullable();

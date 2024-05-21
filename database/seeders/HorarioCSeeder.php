@@ -14,22 +14,20 @@ class HorarioCSeeder extends Seeder
     {
         $horarios = [
             [
-                'horario' => 'Almuerzo día 1',
-                'fecha' => '2024-05-15',
-                'hora_inicio' => '12:00:00',
-                'hora_fin' => '14:00:00'
+                'horario' => 'Junio 1',
+                'fecha' => '2024-06-01',
             ],
             [
-                'horario' => 'Almuerzo día 2',
-                'fecha' => '2024-05-16',
-                'hora_inicio' => '14:15:00',
-                'hora_fin' => '15:00:00'
+                'horario' => 'Junio 2',
+                'fecha' => '2024-06-02',
             ],
             [
-                'horario' => 'Almuerzo día 3',
-                'fecha' => '2024-05-17',
-                'hora_inicio' => '12:00:00',
-                'hora_fin' => '14:00:00'
+                'horario' => 'Junio 3',
+                'fecha' => '2024-06-03',
+            ],
+            [
+                'horario' => 'Junio 4',
+                'fecha' => '2024-06-04',
             ],
         ];
 
