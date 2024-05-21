@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AlmuerzoExport;
 use App\Imports\DataImport;
 use App\Imports\DeportistaImport;
 use App\Models\Provincia;
@@ -82,5 +83,18 @@ class FilesController extends Controller
         }
     }
 
+    public function launchExport(Request $request)
+    {
+        try{
+            $request->validate([
+                'date' => 'required|date',
+            ]);
+
+            $date = $request->date;
+            return Excel::download(new AlmuerzoExport($date), 'almuerzo.xlsx');
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'codigo'=>'500','message'=>$e->getMessage()],500);
+        }
+    }
 
 }
