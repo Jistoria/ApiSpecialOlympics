@@ -60,6 +60,7 @@ class ActividadesDeportivasSeeder extends Seeder
                 'AQ 50M Libre' => 'Natación estilo libre en piscina de 50 metros.',
                 'AQ 100M Libre' => 'Natación estilo libre en piscina de 100 metros.',
                 'AQ 100M Mariposa' => 'Natación estilo mariposa en piscina de 100 metros.',
+                'AQ 50M Mariposa' => 'Natación estilo mariposa en piscina de 100 metros.',
                 'AQ 25M Espalda' => 'Natación estilo espalda en piscina de 25 metros.',
                 'AQ 50M Espalda' => 'Natación estilo espalda en piscina de 50 metros.',
                 'AQ 100M Espalda' => 'Natación estilo espalda en piscina de 100 metros.',

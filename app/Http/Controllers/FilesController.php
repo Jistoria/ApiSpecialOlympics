@@ -45,11 +45,16 @@ class FilesController extends Controller
         }
     }
 
-    public function athleteCredentials()
+    public function athleteCredentials(Request $request)
     {
         try{
-            $deportistas = \App\Models\Deportista::paginate(4);
+            $deportistas = \App\Models\Deportista::
+            when(request()->has('provincia_id'), function($query){
+                $query->where('provincia_id', request('provincia_id'));
+            })
+            ->paginate(4);
             $last_page = $deportistas->lastPage();
+
             $deportistas = $deportistas->map(function($deportista){
                 return $deportista->credentials();
             });
@@ -62,7 +67,11 @@ class FilesController extends Controller
     public function guestCredentials()
     {
         try{
-            $invitados = \App\Models\Invitado::paginate(4);
+            $invitados = \App\Models\Invitado::
+            when(request()->has('provincia_id'), function($query){
+                $query->where('provincia_id', request('provincia_id'));
+            })
+            ->paginate(4);
             $last_page = $invitados->lastPage();
             $invitados = $invitados->map(function($invitado){
                 return $invitado->credentials();
@@ -72,4 +81,6 @@ class FilesController extends Controller
             return response()->json(['success'=>false,'codigo'=>'500','message'=>$e->getMessage()],500);
         }
     }
+
+
 }

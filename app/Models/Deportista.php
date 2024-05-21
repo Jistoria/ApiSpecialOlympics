@@ -131,6 +131,7 @@ class Deportista extends Model
             'name' => $this->nombre,
             'lastname' => $this->apellido,
             'sportsman_number' => $this->numero_deportista,
+            'province_id' => $this->provincia_id,
             'province' => $this->provincia->provincia,
             'sport' => $this->deporte->deporte,
             'events' => $this->actividades_deportivas->map(function($actividad){
