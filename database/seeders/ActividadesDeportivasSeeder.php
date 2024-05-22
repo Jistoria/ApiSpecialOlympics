@@ -91,9 +91,12 @@ class ActividadesDeportivasSeeder extends Seeder
                 'PL Peso Muerto' => 'Competencia de levantamiento de potencia en peso muerto.',
                 'PL Masculino Sentadilla' => 'Competencia de levantamiento de potencia en sentadillas.',
                 'PL Femenino Sentadilla' => 'Competencia de levantamiento de potencia en sentadillas.',
+                'PL Femenino Press de Banca' => 'Competencia de levantamiento de potencia en press de banca.',
+                'PL Femenino Peso Muerto' => 'Competencia de levantamiento de potencia en peso muerto.',
                 'PL Press de Banca' => 'Competencia de levantamiento de potencia en press de banca.',
                 'PL Masculino Press de Banca' => 'Competencia de levantamiento de potencia en press de banca.',
                 'PL Masculino Peso Muerto' => 'Competencia de levantamiento de potencia en peso muerto.',
+                'PL Maculino todos los eventos' => 'Competencia de levantamiento de potencia en todos los eventos.',
             ],
             'Fútbol' => [
                 'FB Football Futsal' => 'Partido de fútbol futsal.',
