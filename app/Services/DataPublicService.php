@@ -33,11 +33,7 @@ class DataPublicService
 
     public function get_sportman()
 {
-    $sportman = $this->sportman->with(['provincia'=>function($pro){
-        $pro->select('provincia_id as id','provincia as name');
-    },'deporte'=>function($dep){
-        $dep->select('deporte_id as id','deporte as name','icon','descripcion as description');
-    }, 'actividades_deportivas'],)->get()->map(function ($item) {
+    $sportman = $this->sportman->with('provincia','actividades_deportivas','Deporte')->get()->map(function ($item) {
         return [
             'id' => $item->id,
             'dni' => $item->cedula,
@@ -77,9 +73,7 @@ class DataPublicService
 
     public function get_activity()
     {
-        $activity = $this->activity->with(['deporte' => function($query) {
-            $query->select('deporte_id as id', 'deporte as sport_name', 'descipcion as description'); // Ajusta los campos y alias según sea necesario
-        }])->select('actividad_id as id', 'actividad as name', 'deporte_id as sport', 'descripcion as description')
+        $activity = $this->activity->with('deporte')->select('actividad_id as id', 'actividad as name', 'deporte_id as sport', 'descripcion as description')
         ->get();
 
         return $activity;
