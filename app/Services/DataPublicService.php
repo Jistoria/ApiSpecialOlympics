@@ -33,17 +33,26 @@ class DataPublicService
 
     public function get_sportman()
 {
-    $sportman = $this->sportman->with('provincia')->get()->map(function ($item) {
+    $sportman = $this->sportman->with('provincia','actividades_deportivas','Deporte')->get()->map(function ($item) {
         return [
             'id' => $item->id,
             'dni' => $item->cedula,
             'name' => $item->nombre . ' ' . $item->apellido,
             'age' => $item->edad,
             'gender' => $item->genero,
-            'sportsman_number' => $item->numero_deportista,
+            'sportsman_number' => $item->numero_deportista ?? 'N/A',
             'birthday' => $item->fecha_nacimiento,
             'img_url' => 'https://specialolimpics--production-jistoria.sierranegra.cloud/'.$item->url_imagen,
             'address' => optional($item->provincia)->provincia, // Nombre de la provincia
+            'sport' => optional($item->Deporte)->deporte, // Nombre del deporte
+            'activity' => $item->actividades_deportivas->map(function ($actividad) {
+                return [
+                    'id' => $actividad->actividad_id,
+                    'name' => $actividad->actividad,
+                    'sport' => $actividad->deporte_id,
+                    'description' => $actividad->descripcion,
+                ];
+            }),
         ];
     });
 
