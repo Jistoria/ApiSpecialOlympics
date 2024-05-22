@@ -73,7 +73,7 @@ class DataPublicService
 
     public function get_activity()
     {
-        $activity = $this->activity->with('deporte')->select('actividad_id as id', 'actividad as name', 'deporte_id as sport', 'descripcion as description')
+        $activity = $this->activity->with('deporte')->select('actividad_id as id', 'actividad as name', 'deporte_id', 'descripcion as description')
         ->get();
 
         return $activity;
