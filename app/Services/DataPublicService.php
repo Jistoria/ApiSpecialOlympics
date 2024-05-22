@@ -74,7 +74,7 @@ class DataPublicService
     public function get_activity()
     {
         $activity = $this->activity->with(['deporte' => function($query) {
-            $query->select('deporte_id as sport_id', 'nombre as sport_name'); // Ajusta los campos y alias según sea necesario
+            $query->select('deporte_id as id', 'deporte as sport_name', 'descipcion as description'); // Ajusta los campos y alias según sea necesario
         }])->select('actividad_id as id', 'actividad as name', 'deporte_id as sport', 'descripcion as description')
         ->get();
 
