@@ -43,8 +43,8 @@ class DataPublicService
             'sportsman_number' => $item->numero_deportista ?? 'N/A',
             'birthday' => $item->fecha_nacimiento,
             'img_url' => 'https://specialolimpics--production-jistoria.sierranegra.cloud/'.$item->url_imagen,
-            'address' => $item->provincia->select('provincia_id as id', 'provincia as address')->get(), // Nombre de la provincia
-            'sport' => $item->deporte->select('deporte_id as id','deporte as name','icon','descripcion as description')->get(),// Nombre del deporte
+            'address' => $item->provincia->select('provincia_id as id', 'provincia as address'), // Nombre de la provincia
+            'sport' => $item->deporte->select('deporte_id as id','deporte as name','icon','descripcion as description'),// Nombre del deporte
             'activity' => $item->actividades_deportivas->map(function ($actividad) {
                 return [
                     'id' => $actividad->actividad_id,
@@ -73,8 +73,11 @@ class DataPublicService
 
     public function get_activity()
     {
-        $activity = $this->activity->select('actividad_id as id','actividad as name','deporte_id as sport','descripcion as description')
+        $activity = $this->activity->with(['deporte' => function($query) {
+            $query->select('deporte_id as sport_id', 'nombre as sport_name'); // Ajusta los campos y alias según sea necesario
+        }])->select('actividad_id as id', 'actividad as name', 'deporte_id as sport', 'descripcion as description')
         ->get();
+
         return $activity;
     }
 
