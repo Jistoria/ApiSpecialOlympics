@@ -33,7 +33,7 @@ class FilesController extends Controller
                 'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             // Create an instance of the Firebase Storage client
-            $name = $provincia->provincia;
+            $name = $provincia->provincia ?? 'Invitado' ;
             foreach($request->file('images') as $image){
                 $nameImage = str_replace(['ñ','Ñ'],['n','N'],$image->getClientOriginalName());
                 $url_imagen = strtolower("public/images/".$name."/".$nameImage);
