@@ -45,8 +45,8 @@ class DataPublicService
             'img_url' => 'https://specialolimpics--production-jistoria.sierranegra.cloud/'.$item->url_imagen,
             'address' => $item->provincia->provincia,// Nombre de la provincia
             'sport' => [
-                'id' => $item->deporte->id,
-                'name' => $item->deporte->nombre_deporte,
+                'id' => $item->deporte->deporte_id,
+                'name' => $item->deporte->deporte,
                 'description' => $item->deporte->descripcion,
                 'icon' => $item->deporte->icon,
             ],
