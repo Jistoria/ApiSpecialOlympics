@@ -43,8 +43,13 @@ class DataPublicService
             'sportsman_number' => $item->numero_deportista ?? 'N/A',
             'birthday' => $item->fecha_nacimiento,
             'img_url' => 'https://specialolimpics--production-jistoria.sierranegra.cloud/'.$item->url_imagen,
-            'address' => $item->provincia,// Nombre de la provincia
-            'sport' => $item->deporte,// Nombre del deporte
+            'address' => $item->provincia->provincia,// Nombre de la provincia
+            'sport' => [
+                'id' => $item->deporte->id,
+                'name' => $item->deporte->nombre_deporte,
+                'description' => $item->deporte->descripcion,
+                'icon' => $item->deporte->icon,
+            ],
             'activity' => $item->actividades_deportivas->map(function ($actividad) {
                 return [
                     'id' => $actividad->actividad_id,
