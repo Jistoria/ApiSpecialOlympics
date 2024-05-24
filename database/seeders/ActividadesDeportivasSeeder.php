@@ -68,6 +68,7 @@ class ActividadesDeportivasSeeder extends Seeder
                 'AQ 400M Libre' => 'Natación estilo libre en piscina de 400 metros.',
                 'AQ 100M Pecho' => 'Natación estilo pecho en piscina de 100 metros.',
                 'AQ 200M Combinado' => 'Natación estilo combinado en piscina de 200 metros.',
+                'AQ 4X100 Relevo Libre' => 'Relevos de natación en piscina de 4x100 metros.',
                 'AQ 800M Libre' => 'Natación estilo libre en piscina de 800 metros.',
             ],
             'Gimnasia Artística' => [

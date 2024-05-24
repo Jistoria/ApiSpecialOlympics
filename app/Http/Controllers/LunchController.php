@@ -50,18 +50,18 @@ class LunchController extends Controller
                 if ($almuerzoExistente) {
                     $usuariosConAlmuerzo[] = $id;
                     continue;
+                }else{
+                    // Crear el registro de almuerzo para este usuario
+                    Almuerzo::create([
+                        'type' => $type,
+                        $type == 1 ? 'deportista_id' : 'invitado_id' => $id,
+                        'horario_comida_id' => $horario_comida_id,
+                    ]);
                 }
-
-                // Crear el registro de almuerzo para este usuario
-                Almuerzo::create([
-                    'type' => $type,
-                    $type == 1 ? 'deportista_id' : 'invitado_id' => $id,
-                    'horario_comida_id' => $horario_comida_id,
-                ]);
             }
 
             if (!empty($usuariosConAlmuerzo)) {
-                return response()->json(['success' => false, 'message' => 'Algunos usuarios ya tienen almuerzo en este horario', 'usuarios_con_almuerzo' => $usuariosConAlmuerzo], 400);
+                return response()->json(['success' => false, 'message' => 'Algunos usuarios ya tienen almuerzo en este horario, pero se crearon los faltantes', 'usuarios_con_almuerzo' => $usuariosConAlmuerzo], 400);
             }
 
             return response()->json(['success' => true, 'message' => 'Creado el almuerzo exitosamente'], 200);
