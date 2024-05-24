@@ -36,11 +36,11 @@ class DeportistaImport implements ToModel, WithHeadingRow, WithValidation, WithC
         //PREPARANDO LOS DATOS PARA EL MODELO
         $provincia_id= Provincia::select('provincia_id')->where('provincia','LIKE',$row['provincia'])->first();
         $nameParts = explode(',',$row['name']);
-        $apellido = ucwords(strtolower($nameParts[0]));
-        $apellido = str_replace(['ñ', 'Ñ'], ['n', 'N'], $apellido);
+        $apellido = ucwords(mb_strtolower($nameParts[0]));
+
 
         $name = ltrim(strtr($nameParts[1],['_'=>' ']));
-        $name = str_replace(['ñ', 'Ñ'], ['n', 'N'], $name);
+
 
 
         $cedula = $row['cedula'];
