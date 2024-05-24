@@ -21,6 +21,7 @@ class TipoInvSeeder extends Seeder
             ['tipo_invitado' => 'VIP'],
             ['tipo_invitado' => 'Staff'],
             ['tipo_invitado' => 'Sistema'],
+            ['tipo_invitado'=>'Prensa']
         ];
         foreach ($tipo as $t) {
             TipoInvitado::create([

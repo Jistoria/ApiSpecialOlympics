@@ -15,6 +15,7 @@ class EatsController extends Controller
     {
         try{
             $data = Invitado::where('cedula',$cedula)->first() ?? Deportista::where('cedula',$cedula)->first();
+
             if (!$data) {
                 return response()->json(['message' => 'No se encontró el usuario'], 404);
             }
