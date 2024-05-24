@@ -44,6 +44,7 @@ class ActividadesDeportivasSeeder extends Seeder
                 'AT Lanzamiento Jabalina' => 'Competencia de lanzamiento de jabalina.',
                 'AT Lanzamiento Bala' => 'Competencia de lanzamiento de bala.',
                 'AT Lanzamiento Bala Mujeres' => 'Competencia de lanzamiento de bala.',
+                'AT 4X50 Relevos Libre' => 'Carrera de relevos de 4x50 metros estilo libre.',
             ],
             'Natación' => [
                 'AQ 25M' => 'Natación en piscina de 25 metros.',
