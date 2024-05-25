@@ -12,12 +12,18 @@
     <tbody>
         @foreach($almuerzos as $almuerzo)
         <tr>
-
-                <td>{{ $almuerzo->deportista?->cedula ?? $almuerzo->invitado->cedula }}</td>
-                <td>{{ $almuerzo->deportista?->nombre ?? $almuerzo->invitado->nombre}}</td>
-                <td>{{ $almuerzo->deportista?->apellido ?? $almuerzo->invitado->apellido }}</td>
-                <td>{{ $almuerzo->deportista ? 'Atleta' : $almumerzo->invitado->tipo_invitado_nombre}}</td>
-
+            @if ($almuerzo->deportista)
+                <td>{{ $almuerzo->deportista->cedula }}</td>
+                <td>{{ $almuerzo->deportista->nombre }}</td>
+                <td>{{ $almuerzo->deportista->apellido }}</td>
+                <td>Atleta</td>
+            @endif
+            @if ($almuerzo->invitado)
+                <td>{{ $almuerzo->invitado->cedula }}</td>
+                <td>{{ $almuerzo->invitado->nombre }}</td>
+                <td>{{ $almuerzo->invitado->apellido }}</td>
+                <td>{{$almumerzo->invitado->tipoInvitado->tipo_invitado_nombre}}</td>
+            @endif
             <td>{{ $almuerzo->horarioComida->fecha }}</td>
             <td>{{ $almuerzo->completado ? 'entregado' : 'no entregado'}}</td>
         </tr>
