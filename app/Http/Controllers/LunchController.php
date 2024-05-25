@@ -32,39 +32,15 @@ class LunchController extends Controller
             ]);
             $type = $request->type;
 
-            $usuariosConAlmuerzo = []; // Lista para almacenar usuarios con almuerzos
-
             foreach ($request->array as $id) {
-                // Verificar si ya existe un almuerzo para este usuario en el mismo horario de comida
-                $almuerzoExistente = Almuerzo::where('horario_comida_id', $horario_comida_id)
-                    ->where(function ($query) use ($id, $type) {
-                        if ($type == 1) {
-                            $query->where('deportista_id', $id);
-                        } elseif ($type == 2) {
-                            $query->where('invitado_id', $id);
-                        }
-                    })
-                    ->first();
-
-                // Si ya existe un almuerzo para este usuario en el mismo horario de comida, agrega el usuario a la lista y continúa con el siguiente usuario
-                if ($almuerzoExistente) {
-                    $usuariosConAlmuerzo[] = $id;
-                    continue;
-                }else{
-                    // Crear el registro de almuerzo para este usuario
-                    Almuerzo::create([
-                        'type' => $type,
-                        $type == 1 ? 'deportista_id' : 'invitado_id' => $id,
-                        'horario_comida_id' => $horario_comida_id,
-                    ]);
-                }
+                Almuerzo::firstOrCreate([
+                    'horario_comida_id' => $horario_comida_id,
+                    $type == 1 ? 'deportista_id' : 'invitado_id' => $id,
+                ]);
             }
 
-            if (!empty($usuariosConAlmuerzo)) {
-                return response()->json(['success' => false, 'message' => 'Algunos usuarios ya tienen almuerzo en este horario, pero se crearon los faltantes', 'usuarios_con_almuerzo' => $usuariosConAlmuerzo], 400);
-            }
 
-            return response()->json(['success' => true, 'message' => 'Creado el almuerzo exitosamente'], 200);
+            return response()->json(['success' => true, 'message' => 'Almuerzos Actualizados y agregados'], 200);
         }  catch (Exception $e) {
             // Manejo de excepciones
         }
