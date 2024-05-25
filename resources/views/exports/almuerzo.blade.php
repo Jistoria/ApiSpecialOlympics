@@ -28,5 +28,13 @@
             <td>{{ $almuerzo->completado ? 'entregado' : 'no entregado'}}</td>
         </tr>
         @endforeach
+        <tr></tr>
+        <tr>
+            <td>--</td>
+            <td>--</td>
+            <td><strong>Total {{$no_entregados}}</strong></td>
+            <td><strong>Total entregados {{$entregados}}</strong></td>
+            <td><strong>Total {{ $total }}</strong></td>
+        </tr>
     </tbody>
 </table>
