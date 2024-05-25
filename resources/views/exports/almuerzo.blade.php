@@ -1,12 +1,12 @@
 <table>
     <thead>
         <tr>
-            <th>Cedula</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Tipo de Usuario</th>
-            <th>Fecha</th>
-            <th>Estado</th>
+            <th><strong>Cedula</strong></th>
+            <th><strong>Nombre</strong></th>
+            <th><strong>Apellido</strong></th>
+            <th><strong>Tipo de Usuario</strong></th>
+            <th><strong>Fecha</strong></th>
+            <th><strong>Estado</strong></th>
         </tr>
     </thead>
     <tbody>
