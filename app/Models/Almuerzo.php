@@ -22,7 +22,7 @@ class Almuerzo extends Model
 
     public function invitado()
     {
-        return $this->belongsTo(Invitado::class);
+        return $this->belongsTo(Invitado::class,'invitado_id');
     }
     public function horarioComida()
     {
