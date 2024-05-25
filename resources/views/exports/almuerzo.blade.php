@@ -22,7 +22,7 @@
                 <td>{{ $almuerzo->invitado->cedula }}</td>
                 <td>{{ $almuerzo->invitado->nombre }}</td>
                 <td>{{ $almuerzo->invitado->apellido }}</td>
-                <td>{{$almumerzo->invitado->tipoInvitado->tipo_invitado_nombre}}</td>
+                <td>{{ $almuerzo->invitado->tipoInvitado->tipo_invitado_nombre }}</td>
             @endif
             <td>{{ $almuerzo->horarioComida->fecha }}</td>
             <td>{{ $almuerzo->completado ? 'entregado' : 'no entregado'}}</td>
