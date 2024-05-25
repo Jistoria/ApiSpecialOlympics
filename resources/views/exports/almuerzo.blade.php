@@ -16,7 +16,7 @@
                 <td>{{ $almuerzo->deportista->cedula ?? $almuerzo->invitado->cedula }}</td>
                 <td>{{ $almuerzo->deportista->nombre ?? $almuerzo->invitado->nombre}}</td>
                 <td>{{ $almuerzo->deportista->apellido ?? $almuerzo->invitado->apellido }}</td>
-                <td>{{ $almuerzo->deportista ? Atleta : $almumerzo->invitado->tipo_invitado_nombre}}</td>
+                <td>{{ $almuerzo->deportista ? 'Atleta' : $almumerzo->invitado->tipo_invitado_nombre}}</td>
 
             <td>{{ $almuerzo->horarioComida->fecha }}</td>
             <td>{{ $almuerzo->completado ? 'entregado' : 'no entregado'}}</td>
