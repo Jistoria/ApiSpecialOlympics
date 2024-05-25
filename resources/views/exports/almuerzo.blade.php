@@ -24,8 +24,8 @@
                 <td>{{ $almuerzo->invitado->apellido }}</td>
                 <td>{{$almumerzo->invitado->tipo_invitado_nombre}}</td>
             @endif
-            <td>{{ $almuerzo->horario->fecha }}</td>
-            <td>{{ $almuerzo->estado ? 'entregado' : 'no entregado'}}</td>
+            <td>{{ $almuerzo->horarioComida->fecha }}</td>
+            <td>{{ $almuerzo->completado ? 'entregado' : 'no entregado'}}</td>
         </tr>
         @endforeach
     </tbody>
