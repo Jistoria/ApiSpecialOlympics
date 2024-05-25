@@ -14,10 +14,15 @@ class GuestController extends Controller
         $guests = Invitado::all();
         return response()->json($guests);
     }
-    public function indexf($tipo_invitado_id)
+    public function indexf($tipo_invitado_id=null)
 {
         // Método indexf: Muestra una lista paginada de recursos (en este caso, invitados) filtrados por tipo de invitado
-        $query = Invitado::where('tipo_invitado_id', $tipo_invitado_id)->orderBy('invitado_id');
+        $query = Invitado::when(
+            $tipo_invitado_id !== null,
+            function ($query) use ($tipo_invitado_id) {
+                return $query->where('tipo_invitado_id', $tipo_invitado_id);
+            }
+        )->orderBy('invitado_id');
 
         // Pagina los resultados a 5 por página
         $guests = $query->paginate(5);
