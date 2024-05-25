@@ -99,7 +99,7 @@ class SportmanController extends Controller
     {
         try{
             $request->validate(['ids'=>'required|array','ids.*'=>'required|exists:actividades_deportivas,actividad_id']);
-            $response = $this->sportmanService->activitiesAttach($spotman, $request->input());
+            $response = $this->sportmanService->activitiesAttach($spotman, $request->ids);
             return response()->json($response);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
