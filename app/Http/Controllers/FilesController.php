@@ -53,6 +53,9 @@ class FilesController extends Controller
             when(request('provincia_id'), function($query){
                 $query->where('provincia_id', request('provincia_id'));
             })
+            ->when(request('deporte_id'), function($query){
+                $query->where('deporte_id', request('deporte_id'));
+            })
             ->paginate(4);
             $last_page = $deportistas->lastPage();
 
