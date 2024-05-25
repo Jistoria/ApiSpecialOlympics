@@ -21,7 +21,7 @@ class AlmuerzoExport implements FromView, ShouldAutoSize
     public function view(): \Illuminate\Contracts\View\View
     {
         return view('exports.almuerzo', [
-            'almuerzo' => Almuerzo::with(['deportista','invitado','invitado.tipoInvitado','horarioComida'])->where('horario_comida_id', $this->date)->get()
+            'almuerzos' => Almuerzo::with(['deportista','invitado','invitado.tipoInvitado','horarioComida'])->where('horario_comida_id', $this->date)->get()
         ]);
     }
 
