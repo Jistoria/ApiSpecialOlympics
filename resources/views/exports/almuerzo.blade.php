@@ -32,7 +32,7 @@
         <tr>
             <td>--</td>
             <td>--</td>
-            <td><strong>Total {{$no_entregados}}</strong></td>
+            <td><strong>Total no entregados {{$no_entregados}}</strong></td>
             <td><strong>Total entregados {{$entregados}}</strong></td>
             <td><strong>Total {{ $total }}</strong></td>
         </tr>
