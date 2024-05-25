@@ -42,7 +42,7 @@ class LunchController extends Controller
 
             return response()->json(['success' => true, 'message' => 'Almuerzos Actualizados y agregados'], 200);
         }  catch (Exception $e) {
-            // Manejo de excepciones
+            return response()->json(['success' => false, 'message' => 'Error al actualizar almuerzos', 'error'=>$e->getMessage()], 400);
         }
     }
     public function delete(Request $request){
