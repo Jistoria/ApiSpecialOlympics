@@ -21,11 +21,11 @@ return new class extends Migration
                 ->onDelete('restrict');
             $table->unsignedBigInteger('provincia_id')->nullable();
             $table->unsignedBigInteger('tipo_invitado_id');
-            $table->string('nombre');
-            $table->string('apellido');
+            $table->string('nombre')->nullable();
+            $table->string('apellido')->nullable();
             $table->integer('edad')->nullable();
             $table->string('url_imagen')->nullable();
-            $table->enum('genero',['M','F']);
+            $table->enum('genero',['M','F'])->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->boolean('activo')->default(true);
             $table->foreign('provincia_id')

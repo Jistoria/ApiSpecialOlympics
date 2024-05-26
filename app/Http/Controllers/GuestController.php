@@ -55,14 +55,24 @@ class GuestController extends Controller
             $request->validate([
                 'provincia_id' => 'nullable',
                 'tipo_invitado_id' => 'required',
-                'nombre' => 'required|unique:invitados,nombre',
-                'apellido' => 'required',
-                'cedula' => 'required',
-                'edad' => 'required',
-                'genero' => 'required',
-
+                'nombre' => 'nullable|unique:invitados,nombre',
+                'apellido' => 'nullable',
+                'cedula' => 'nullable',
+                'edad' => 'nullable',
+                'genero' => 'nullable',
+                'imagen' => 'nullable|image',
             ]);
-            Invitado::create($request->all());
+            $data = $request->all();
+            if(request('imagen')){
+                $image = $request->file('imagen');
+                $name_file = $request->nombre.' '.$request->apellido.' '.$request->cedula.'.'.$image->getClientOriginalExtension();
+                $image->storeAs('public/images/Invitado/',$name_file);
+                $url_imagen = 'storage/images/Invitado/'.$name_file;
+                $data['url_imagen'] = $url_imagen;
+            }
+            Invitado::create($data);
+
+
             return response()->json(['success'=>'true','message' => 'Creado el invitado exitosamente'], 200);
         }  catch (Exception $e) {
             // Captura el mensaje de error
