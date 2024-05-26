@@ -76,7 +76,7 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
     route::put('/update_tg/{tipo_invitado}', [TypeGuestController::class, 'update']);
     //crudcito de invitados
     Route::get('/get_guest', [GuestController::class, 'index']);
-    Route::get('/get_guestf/{tipo_invitado_id?}', [GuestController::class, 'indexf']);
+    Route::get('/get_guestf', [GuestController::class, 'indexf']);
     Route::get('/get_find/{nombreCompleto}', [GuestController::class, 'show']);
     route::post('/store_guest', [GuestController::class, 'store']);
     route::post('/delete_guest/{invitado}', [GuestController::class, 'delete']);
