@@ -17,7 +17,13 @@ class GuestController extends Controller
     public function indexf($tipo_invitado_id=null)
 {
         // Método indexf: Muestra una lista paginada de recursos (en este caso, invitados) filtrados por tipo de invitado
-        $query = Invitado::when(
+        $query = Invitado::when($search = request('search'), function ($query) use ($search) {
+            return $query->where(function ($query) use ($search) {
+                $query->where('nombre', 'like', '%' . $search . '%')
+                    ->orWhere('apellido', 'like', '%' . $search . '%')
+                    ->orWhere('cedula', 'like', '%' . $search . '%');
+            });
+        })->when(
             $tipo_invitado_id !== null,
             function ($query) use ($tipo_invitado_id) {
                 return $query->where('tipo_invitado_id', $tipo_invitado_id);
