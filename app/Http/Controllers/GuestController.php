@@ -14,7 +14,7 @@ class GuestController extends Controller
         $guests = Invitado::all();
         return response()->json($guests);
     }
-    public function indexf($tipo_invitado_id=null)
+    public function indexf()
 {
         // Método indexf: Muestra una lista paginada de recursos (en este caso, invitados) filtrados por tipo de invitado
         $query = Invitado::when($search = request('search'), function ($query) use ($search) {
@@ -24,7 +24,7 @@ class GuestController extends Controller
                     ->orWhere('cedula', 'like', '%' . $search . '%');
             });
         })->when(
-            $tipo_invitado_id !== null,
+            $tipo_invitado_id = request('tipo_invitado_id'),
             function ($query) use ($tipo_invitado_id) {
                 return $query->where('tipo_invitado_id', $tipo_invitado_id);
             }
@@ -70,9 +70,8 @@ class GuestController extends Controller
                 $url_imagen = 'storage/images/Invitado/'.$name_file;
                 $data['url_imagen'] = $url_imagen;
             }
+            $data['cedula'] = $data['cedula'] ?? Invitado::factory()->make()->cedula;
             Invitado::create($data);
-
-
             return response()->json(['success'=>'true','message' => 'Creado el invitado exitosamente'], 200);
         }  catch (Exception $e) {
             // Captura el mensaje de error
