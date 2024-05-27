@@ -196,6 +196,6 @@ return [
     |
     */
     // 'same_site' => 'lax', para que funcione en producción
-    'same_site' => 'lax',
+    'same_site' => 'none',
 
 ];
