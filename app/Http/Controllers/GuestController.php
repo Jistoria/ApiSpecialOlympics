@@ -55,7 +55,7 @@ class GuestController extends Controller
             $request->validate([
                 'provincia_id' => 'nullable',
                 'tipo_invitado_id' => 'required',
-                'nombre' => 'nullable|unique:invitados,nombre',
+                'nombre' => 'nullable',
                 'apellido' => 'nullable',
                 'cedula' => 'nullable',
                 'edad' => 'nullable',
