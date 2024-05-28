@@ -43,7 +43,7 @@ class DeportistaImport implements ToModel, WithHeadingRow, WithValidation, WithC
 
 
 
-        $cedula = $row['cedula'];
+        $cedula = $row['cedula'] ?? Deportista::factory()->make()->cedula;
         $fechaNacimiento = $row['dob'] ? Carbon::createFromFormat('d/m/Y', $row['dob'])->format('Y-m-d') : null;
         $actividades = explode(', ', strtr($row['evento'],['  ' =>' ']));
         // Generar el código QR

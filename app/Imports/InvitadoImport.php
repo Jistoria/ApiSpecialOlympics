@@ -36,7 +36,7 @@ class InvitadoImport implements ToModel, WithHeadingRow
         $name = ucwords(mb_strtolower($nameParts[1]));
         $fechaNacimiento = $row['dob'] ? Carbon::createFromFormat('d/m/Y', $row['dob'])->format('Y-m-d') : null;
          // Generar el código QR
-        $cedula = $row['cedula'];
+        $cedula = $row['cedula'] ?? Invitado::factory()->make()->cedula;;
         $qrCode = QrCode::size(300)->generate($cedula);
          // Guardar el código QR en el almacenamiento (storage)
         $fileName = $cedula; // Nombre del archivo basado en la cédula

@@ -23,7 +23,7 @@ class DeportistaFactory extends Factory
         $provincia = Provincia::inRandomOrder()->select('provincia_id')->first();
 
         return [
-            'cedula' => $this->faker->unique()->numberBetween(1000000, 99999999), // Genera un número de cédula de 7 dígitos
+            'cedula' => $this->faker->unique()->text(10), // Genera un número de cédula de 7 dígitos
             'numero_deportista' => $this->faker->unique()->numberBetween(1000, 9999), // Genera un número de deportista de 4 dígitos
             'provincia_id' => $provincia,
             'nombre' => $this->faker->firstName,

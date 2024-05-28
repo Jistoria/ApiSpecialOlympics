@@ -17,7 +17,7 @@ class TipoInvSeeder extends Seeder
             ['tipo_invitado' => 'Jefe de Delegación'],
             ['tipo_invitado' => 'Entrenador en Jefe'],
             ['tipo_invitado' => 'Asistente de Entrenador'],
-            ['tipo_invitado' => 'Asistente Jefe de Delegación '],
+            ['tipo_invitado' => 'Asistente Jefe de Delegación'],
             ['tipo_invitado' => 'VIP'],
             ['tipo_invitado' => 'Staff'],
             ['tipo_invitado' => 'Sistema'],
