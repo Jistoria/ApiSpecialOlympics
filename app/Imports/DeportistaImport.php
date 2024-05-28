@@ -81,9 +81,9 @@ class DeportistaImport implements ToModel, WithHeadingRow, WithValidation, WithC
     {
         return [
             'name' => 'required',
-            'cedula' => ['required','unique:deportistas,cedula'],
+            'cedula' => ['nullable','unique:deportistas,cedula'],
             // 'dob' => 'date_format:d/m/Y',
-            'gen' => 'required|in:M,F',
+            'gen' => 'in:M,F',
             // 'age' => 'numeric',
         ];
     }

@@ -69,7 +69,7 @@ class InvitadoImport implements ToModel, WithHeadingRow
     {
         return [
             'name' => 'required',
-            'cedula' => ['required','unique:invitados,cedula'],
+            'cedula' => ['nullable','unique:invitados,cedula'],
 
             'gen' => 'required|in:M,F',
 
