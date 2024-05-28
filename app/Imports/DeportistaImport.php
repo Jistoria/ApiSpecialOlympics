@@ -51,7 +51,8 @@ class DeportistaImport implements ToModel, WithHeadingRow, WithValidation, WithC
              // Guardar el código QR en el almacenamiento (storage)
             $fileName = $cedula ; // Nombre del archivo basado en la cédula
             Storage::put('public/qrcodes/' . $fileName, $qrCode);
-            $url_imagen = mb_strtolower("storage/images/".$row['provincia']."/"."$apellido $name $cedula.jpg");
+            $path = $row['cedula'] ? "storage/images/".$row['provincia']."/"."$apellido $name $cedula.jpg" : "storage/images/".$row['provincia']."/"."$apellido $name.jpg";
+            $url_imagen = mb_strtolower($path);
             $url_imagen = str_replace(' ', '_', $url_imagen);
             $new_deportista = new Deportista([
                 'nombre' => $name,
