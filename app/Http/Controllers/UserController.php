@@ -18,7 +18,7 @@ class UserController extends Controller
                 'email' => 'required',
                 'password' => 'required',
             ]);
-            if (Auth::attempt($request->all())) {
+            if (Auth::attempt($request->only('email','password'))) {
                 // Obtener el usuario autenticado
                 $user = Auth::user();
                 $token = $user->createToken('token-name')->plainTextToken;

@@ -35,12 +35,11 @@ class ProvinciasSeeder extends Seeder
             'OE. Pastaza',
             'OE. Pichincha',
             'OE. Santa Elena',
-            'OE. Santo Domingo de los Tsáchilas',
+            'OE. Santo Domingo',
             'OE. Sucumbíos',
             'OE. Tungurahua',
-            'OE. Zamora Chinchipe'
-
-
+            'OE. Zamora Chinchipe',
+            'OE. Manta'
         ];
 
         // Iterar sobre el array de provincias y crear registros en la base de datos
