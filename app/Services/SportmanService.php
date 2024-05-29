@@ -59,7 +59,7 @@ class SportmanService
     public function edit($id, $data)
     {
             $sportman = $this->sportman->find($id);
-            $sportman->update($data)->save();
+            $sportman->update($data);
 
             return $sportman;
     }
