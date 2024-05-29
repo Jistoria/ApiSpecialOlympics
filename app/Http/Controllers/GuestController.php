@@ -118,13 +118,8 @@ class GuestController extends Controller
             $guest = Invitado::find($id);
             if ($guest) {
                 $request->validate([
-                    'provincia_id' => 'required',
                     'tipo_invitado_id' => 'required',
                     'nombre' => 'required|unique:invitados,nombre,' .$id. ',invitado_id',
-                    'apellido' => 'required',
-                    'cedula' => 'required',
-                    'edad' => 'required',
-                    'genero' => 'required',
 
                 ]);
                 $guest->update($request->all());
