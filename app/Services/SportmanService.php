@@ -49,6 +49,7 @@ class SportmanService
             $name_file = $data['nombre'].' '.$data['apellido'].' '.$data['cedula'].'.'.$image->getClientOriginalExtension();
             $image->storeAs('public/images/'.$provincia->provincia.'/',$name_file);
             $data['url_imagen'] = 'storage/images/'.$provincia->provincia.'/'.$name_file;
+            $data['cedula'] = $data['cedula'] ?? $this->sportman->factory()->make()->cedula;
             $this->sportman->create($data);
             return true;
         }catch(Exception $e){
