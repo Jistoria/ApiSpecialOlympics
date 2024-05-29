@@ -82,7 +82,6 @@ class SportmanController extends Controller
     public function update(Request $request, $sportman)
     {
         try{
-            return response()->json(['success'=>true,'message'=>$request->all()]);
             $data = $this->sportmanService->edit($sportman, $request->except('actividad_id'));
             return response()->json(['success'=>true,'message'=>'Deportista actualizado correctamente', 'deportista'=>$data]);
         }catch(\Exception $e){
