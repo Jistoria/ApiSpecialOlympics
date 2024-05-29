@@ -51,6 +51,8 @@ class SportmanService
                 $name_file = $data['nombre'].' '.$data['apellido'].' '.$data['cedula'].'.'.$image->getClientOriginalExtension();
                 $image->storeAs('public/images/'.$provincia->provincia.'/',$name_file);
                 $data['url_imagen'] = 'storage/images/'.$provincia->provincia.'/'.$name_file;
+            }else{
+                $data['url_imagen'] = 'nada';
             }
 
 
