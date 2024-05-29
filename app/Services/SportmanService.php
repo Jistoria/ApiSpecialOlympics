@@ -58,14 +58,10 @@ class SportmanService
 
     public function edit($id, $data)
     {
-        try{
             $sportman = $this->sportman->find($id);
             $sportman->update($data);
-            return true;
-        }catch(Exception $e){
-            return ['success'=>false,
-            'message'=>'Ha ocurrido un error al actualizar '.$e->getMessage()];
-        }
+
+            return $sportman;
     }
 
     public function active($id)

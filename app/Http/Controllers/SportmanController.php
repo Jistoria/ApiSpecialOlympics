@@ -83,7 +83,7 @@ class SportmanController extends Controller
     {
         try{
             $this->sportmanService->edit($sportman, $request->all());
-            return response()->json(['success'=>true,'message'=>'Deportista actualizado correctamente']);
+            return response()->json(['success'=>true,'message'=>'Deportista actualizado correctamente', 'athlete'=>$sportman]);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
         }
