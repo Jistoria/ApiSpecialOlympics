@@ -62,7 +62,7 @@ class GuestController extends Controller
                 'genero' => 'nullable'
             ]);
             $data = $request->all();
-            if(empty(request('imagen'))){
+            if(!request('imagen') == '' && $request->hasFile('imagen')) {
                 $image = $request->file('imagen');
                 $name_file = $request->nombre.' '.$request->apellido.' '.$request->cedula.'.'.$image->getClientOriginalExtension();
                 $image->storeAs('public/images/Invitado/',$name_file);
