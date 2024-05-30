@@ -14,8 +14,8 @@ class HorarioCSeeder extends Seeder
     {
         $horarios = [
             [
-                'horario' => 'Mayo 21',
-                'fecha' => '2024-05-21',
+                'horario' => 'Mayo 30',
+                'fecha' => '2024-05-30',
             ],
             [
                 'horario' => 'Junio 2',
