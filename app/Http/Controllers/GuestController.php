@@ -120,8 +120,7 @@ class GuestController extends Controller
             if ($guest) {
                 $request->validate([
                     'cedula' => 'nullable|unique:invitados,cedula,' .$id. ',invitado_id',
-                    'tipo_invitado_id' => 'required',
-                    'nombre' => 'required|unique:invitados,nombre,' .$id. ',invitado_id',
+                    'tipo_invitado_id' => 'required'
                 ]);
                 $guest->update($request->all());
                 return response()->json(['success'=>'true','message' => 'Invitado actualizado exitosamente'], 200);
