@@ -11,7 +11,7 @@ class GuestController extends Controller
     public function index()
     {
         // Método index: Muestra una lista de recursos (en este caso, invitados)
-        $guests = Invitado::all();
+        $guests = Invitado::where('tipo_invitado_id', '!=', 10)->get();
         return response()->json($guests);
     }
     public function indexf()
