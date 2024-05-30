@@ -96,4 +96,10 @@ class SportmanService
     {
         return $this->sportman->select('id', 'nombre', 'apellido')->get();
     }
+
+    public function delete($id)
+    {
+        $this->sportman->find($id)->delete();
+        return true;
+    }
 }
