@@ -68,6 +68,8 @@ class GuestController extends Controller
                 $image->storeAs('public/images/Invitado/',$name_file);
                 $url_imagen = 'storage/images/Invitado/'.$name_file;
                 $data['url_imagen'] = $url_imagen;
+            }else{
+                $data['url_imagen'] = 'nada';
             }
             $data['cedula'] = $data['cedula'] ?? Invitado::factory()->make()->cedula;
             Invitado::create($data);
