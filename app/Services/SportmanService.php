@@ -47,7 +47,7 @@ class SportmanService
             $provincia = \App\Models\Provincia::find($data['provincia_id']);
             $image = $data['imagen'];
 
-            if(!request('imagen') == '' && request('imagen') != null){
+            if(request('imagen')->hasFile('imagen')){
                 $name_file = $data['nombre'].' '.$data['apellido'].' '.$data['cedula'].'.'.$image->getClientOriginalExtension();
                 $image->storeAs('public/images/'.$provincia->provincia.'/',$name_file);
                 $data['url_imagen'] = 'storage/images/'.$provincia->provincia.'/'.$name_file;
