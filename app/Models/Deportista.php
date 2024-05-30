@@ -24,6 +24,14 @@ class Deportista extends Model
             $fileName = $cdl; // Nombre del archivo basado en la cédula
             Storage::put('public/qrcodes/' . $fileName, $qrCode);
         });
+
+        static::updating(function ($deportista) {
+            // Actualizar el código QR
+            $cdl = $deportista->cedula;
+            $qrCode = QrCode::size(300)->generate($cdl);
+            $fileName = $cdl; // Nombre del archivo basado en la cédula
+            Storage::put('public/qrcodes/' . $fileName, $qrCode);
+        });
     }
 
     protected $table = 'deportistas';

@@ -23,7 +23,11 @@ class Invitado extends Model
             Storage::put('public/qrcodes/' . $fileName, $qrCode);
         });
         static::updating(function ($guest) {
-
+            // Actualizar el código QR
+            $cdl = $guest->cedula;
+            $qrCode = QrCode::size(300)->generate($cdl);
+            $fileName = $cdl; // Nombre del archivo basado en la cédula
+            Storage::put('public/qrcodes/' . $fileName, $qrCode);
         });
     }
     protected $table = 'invitados';
