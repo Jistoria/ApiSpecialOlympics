@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Deportista;
 use App\Services\SportmanService;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,19 @@ class SportmanController extends Controller
     {
         try{
             $request->validate(['cedula'=>'nullable|unique:deportistas,cedula','provincia_id' =>'required|exists:provincias,provincia_id','deporte_id' =>'required|exists:deportes,deporte_id']);
-            $new_sportman = $this->sportmanService->create($request->all());
+            $data = $request->all();
+            if(!request('imagen') == '' && $request->hasFile('imagen')) {
+                $image = $request->file('imagen');
+                $name_file = $request->nombre.' '.$request->apellido.' '.$request->cedula.'.'.$image->getClientOriginalExtension();
+                $image->storeAs('public/images/Invitado/',$name_file);
+                $url_imagen = 'storage/images/Invitado/'.$name_file;
+                $data['url_imagen'] = $url_imagen;
+            }else{
+                $data['url_imagen'] = 'nada';
+            }
+            $data['cedula'] = $data['cedula'] ?? Deportista::factory()->make()->cedula;
+            $new_sportman = Deportista::create($data);
+
             return response()->json(['success'=>true,'message'=>'Deportista creado correctamente','deportista'=>$new_sportman]);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
