@@ -88,19 +88,10 @@ class GuestController extends Controller
             $guest = Invitado::find($id);
 
             if ($guest) {
-                // Verificar si el invitado ya está deshabilitado
-                if (!$guest->activo) {
-                    // Si ya está deshabilitado, se habilita cambiando el estado a true
-                    $guest->activo = true;
-                    $guest->save();
-                    // Devolver una respuesta JSON indicando el éxito de la operación
-                    return response()->json(['success' => true, 'message' => 'Invitado habilitado correctamente'], 200);
-                }
-                // Si no está deshabilitado, se deshabilita cambiando el estado a false
-                $guest->activo = false;
-                $guest->save();
+
+                $guest->delete();
                 // Devolver una respuesta JSON indicando el éxito de la operación
-                return response()->json(['success' => true, 'message' => 'Invitado deshabilitado correctamente'], 200);
+                return response()->json(['success' => true, 'message' => 'Invitado eliminado correctamente'], 200);
             } else {
                 // Devolver un mensaje de error si el invitado no se encuentra
                 return response()->json(['success' => false, 'error' => 'Invitado no encontrado'], 404);
