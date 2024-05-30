@@ -53,10 +53,10 @@ class SportmanController extends Controller
      * @param $sportman
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy($sportman)
     {
         try{
-            $this->sportmanService->delete($id);
+            $this->sportmanService->delete($sportman);
             return response()->json(['success'=>true,'message'=>'Se ha eliminado el deportista correctamente']);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'message'=>$e->getMessage()],500);
