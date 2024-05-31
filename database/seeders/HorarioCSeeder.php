@@ -13,25 +13,44 @@ class HorarioCSeeder extends Seeder
     public function run(): void
     {
         $horarios = [
-            // Junio 1
+            //Mayo 30
             [
-                'horario' => 'Junio 1 Desayuno',
-                'fecha' => '2024-06-01',
+                'horario' => 'Mayo 30 Desayuno',
+                'fecha' => '2024-05-30',
                 'hora_inicio' => '05:00',
                 'hora_fin' => '10:00',
             ],
             [
-                'horario' => 'Junio 1 Almuerzo',
-                'fecha' => '2024-06-01',
+                'horario' => 'Mayo 30 Almuerzo',
+                'fecha' => '2024-05-30',
                 'hora_inicio' => '12:00',
                 'hora_fin' => '16:00',
             ],
             [
-                'horario' => 'Junio 1 Merienda',
-                'fecha' => '2024-06-01',
+                'horario' => 'Mayo 30 Merienda',
+                'fecha' => '2024-05-30',
                 'hora_inicio' => '17:00',
                 'hora_fin' => '20:00',
             ],
+            // Junio 1
+            // [
+            //     'horario' => 'Junio 1 Desayuno',
+            //     'fecha' => '2024-06-01',
+            //     'hora_inicio' => '05:00',
+            //     'hora_fin' => '10:00',
+            // ],
+            // [
+            //     'horario' => 'Junio 1 Almuerzo',
+            //     'fecha' => '2024-06-01',
+            //     'hora_inicio' => '12:00',
+            //     'hora_fin' => '16:00',
+            // ],
+            // [
+            //     'horario' => 'Junio 1 Merienda',
+            //     'fecha' => '2024-06-01',
+            //     'hora_inicio' => '17:00',
+            //     'hora_fin' => '20:00',
+            // ],
             // Junio 2
             [
                 'horario' => 'Junio 2 Desayuno',
