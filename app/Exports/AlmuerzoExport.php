@@ -20,13 +20,13 @@ class AlmuerzoExport implements FromView, ShouldAutoSize
 
     public function view(): \Illuminate\Contracts\View\View
     {
-        $almuerzos = Almuerzo::with(['deportista', 'invitado', 'invitado.tipoInvitado', 'horarioComida'])
+        $almuerzos = Almuerzo::with(['deportista.provincia', 'invitado.provincia', 'invitado.tipoInvitado', 'horarioComida'])
                             ->where('horario_comida_id', $this->date)
                             ->get();
 
         // Calcular los totales
         $total = $almuerzos->count();
-        $entregados = $almuerzos->where('entregado', true)->count();
+        $entregados = $almuerzos->where('completado', true)->count();
         $no_entregados = $total - $entregados;
 
         // Pasar los datos y los contadores a la vista
