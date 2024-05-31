@@ -19,17 +19,10 @@ class EatsController extends Controller
             if (!$data) {
                 return response()->json(['message' => 'No se encontró el usuario'], 404);
             }
-            $data->with(['almuerzos' => function($query) {
-                $query->whereHas('horarioComida', function($query) {
-                    $query->whereDate('fecha', now()->toDateString());
-                })->orderBy('horarioComida.hora_inicio');
-            }, 'almuerzos.horarioComida'])
-            ->whereHas('almuerzos.horarioComida', function($query) {
-                $query->whereDate('fecha', now()->toDateString());
-            })
-            ->select('id', 'nombre', 'apellido', 'numero_deportista')
-            ->get();
-
+            $data->load('almuerzos','almuerzos.horarioComida')
+                ->whereHas('almuerzos.horarioComida',function($query){
+                    $query->whereDate('fecha',now()->toDateString())->orderBy('hora_inicio','Desc');
+                })->select('id', 'nombre', 'apellido', 'numero_deportista');
 
             if ($data->almuerzos->isEmpty()) {
                 // No se encontraron almuerzos para el día actual
@@ -40,7 +33,8 @@ class EatsController extends Controller
                 'cedula' => $data->cedula,
                 'nombre' => $data->nombre,
                 'apellido' => $data->apellido,
-                'almuerzos' => $data->almuerzos,
+                'almuerzos' => $data->almuerzos->sortBy('horarioComida.hora_inicio'),
+
                 'url_image' => $data->url_imagen,
             ];
 

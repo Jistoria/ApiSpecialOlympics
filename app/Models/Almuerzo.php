@@ -32,4 +32,6 @@ class Almuerzo extends Model
     {
         return $this->belongsTo(Deportista::class);
     }
+
+
 }
