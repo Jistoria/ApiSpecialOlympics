@@ -14,43 +14,43 @@ class HorarioCSeeder extends Seeder
     {
         $horarios = [
             //Mayo 30
-            [
-                'horario' => 'Mayo 30 Desayuno',
-                'fecha' => '2024-05-30',
-                'hora_inicio' => '22:30',
-                'hora_fin' => '22:40',
-            ],
-            [
-                'horario' => 'Mayo 30 Almuerzo',
-                'fecha' => '2024-05-30',
-                'hora_inicio' => '22:40',
-                'hora_fin' => '22:50',
-            ],
-            [
-                'horario' => 'Mayo 30 Merienda',
-                'fecha' => '2024-05-30',
-                'hora_inicio' => '23:00',
-                'hora_fin' => '23:10',
-            ],
-            // Junio 1
             // [
-            //     'horario' => 'Junio 1 Desayuno',
-            //     'fecha' => '2024-06-01',
-            //     'hora_inicio' => '05:00',
-            //     'hora_fin' => '10:00',
+            //     'horario' => 'Mayo 30 Desayuno',
+            //     'fecha' => '2024-05-30',
+            //     'hora_inicio' => '22:30',
+            //     'hora_fin' => '22:40',
             // ],
             // [
-            //     'horario' => 'Junio 1 Almuerzo',
-            //     'fecha' => '2024-06-01',
-            //     'hora_inicio' => '12:00',
-            //     'hora_fin' => '16:00',
+            //     'horario' => 'Mayo 30 Almuerzo',
+            //     'fecha' => '2024-05-30',
+            //     'hora_inicio' => '22:40',
+            //     'hora_fin' => '22:50',
             // ],
             // [
-            //     'horario' => 'Junio 1 Merienda',
-            //     'fecha' => '2024-06-01',
-            //     'hora_inicio' => '17:00',
-            //     'hora_fin' => '20:00',
+            //     'horario' => 'Mayo 30 Merienda',
+            //     'fecha' => '2024-05-30',
+            //     'hora_inicio' => '23:00',
+            //     'hora_fin' => '23:10',
             // ],
+            //Junio 1
+            [
+                'horario' => 'Junio 1 Desayuno',
+                'fecha' => '2024-06-01',
+                'hora_inicio' => '05:00',
+                'hora_fin' => '10:00',
+            ],
+            [
+                'horario' => 'Junio 1 Almuerzo',
+                'fecha' => '2024-06-01',
+                'hora_inicio' => '12:00',
+                'hora_fin' => '16:00',
+            ],
+            [
+                'horario' => 'Junio 1 Merienda',
+                'fecha' => '2024-06-01',
+                'hora_inicio' => '17:00',
+                'hora_fin' => '20:00',
+            ],
             // Junio 2
             [
                 'horario' => 'Junio 2 Desayuno',
