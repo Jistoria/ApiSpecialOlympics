@@ -19,10 +19,17 @@ class EatsController extends Controller
             if (!$data) {
                 return response()->json(['message' => 'No se encontró el usuario'], 404);
             }
-            $data->load('almuerzos','almuerzos.horarioComida')
-                ->whereHas('almuerzos.horarioComida',function($query){
-                    $query->whereDate('fecha',now()->toDateString())->orderBy('hora_inicio ');
-                })->select('id', 'nombre', 'apellido', 'numero_deportista');
+            $data->with(['almuerzos' => function($query) {
+                $query->whereHas('horarioComida', function($query) {
+                    $query->whereDate('fecha', now()->toDateString());
+                })->orderBy('horarioComida.hora_inicio');
+            }, 'almuerzos.horarioComida'])
+            ->whereHas('almuerzos.horarioComida', function($query) {
+                $query->whereDate('fecha', now()->toDateString());
+            })
+            ->select('id', 'nombre', 'apellido', 'numero_deportista')
+            ->get();
+
 
             if ($data->almuerzos->isEmpty()) {
                 // No se encontraron almuerzos para el día actual
