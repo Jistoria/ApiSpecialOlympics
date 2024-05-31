@@ -33,8 +33,7 @@ class EatsController extends Controller
                 'cedula' => $data->cedula,
                 'nombre' => $data->nombre,
                 'apellido' => $data->apellido,
-                'almuerzos' => $data->almuerzos->sortBy('horarioComida.hora_inicio'),
-
+                'almuerzos' => $data->almuerzos,
                 'url_image' => $data->url_imagen,
             ];
 

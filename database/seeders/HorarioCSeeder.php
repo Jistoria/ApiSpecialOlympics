@@ -17,20 +17,20 @@ class HorarioCSeeder extends Seeder
             [
                 'horario' => 'Mayo 30 Desayuno',
                 'fecha' => '2024-05-30',
-                'hora_inicio' => '05:00',
-                'hora_fin' => '10:00',
+                'hora_inicio' => '22:30',
+                'hora_fin' => '22:40',
             ],
             [
                 'horario' => 'Mayo 30 Almuerzo',
                 'fecha' => '2024-05-30',
-                'hora_inicio' => '12:00',
-                'hora_fin' => '16:00',
+                'hora_inicio' => '22:40',
+                'hora_fin' => '22:50',
             ],
             [
                 'horario' => 'Mayo 30 Merienda',
                 'fecha' => '2024-05-30',
-                'hora_inicio' => '17:00',
-                'hora_fin' => '20:00',
+                'hora_inicio' => '23:00',
+                'hora_fin' => '23:10',
             ],
             // Junio 1
             // [
