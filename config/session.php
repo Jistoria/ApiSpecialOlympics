@@ -195,7 +195,7 @@ return [
     | Supported: "lax", "strict", "none", null
     |
     */
-    'same_site' => 'lax' // para que funcione en producción
-    //'same_site' => 'none',
+    //'same_site' => 'lax' // para que funcione en producción
+    'same_site' => 'none',
 
 ];

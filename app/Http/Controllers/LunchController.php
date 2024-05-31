@@ -21,15 +21,10 @@ class LunchController extends Controller
                 'array' => 'required|array',
                 'horario_comida_id' => 'required|exists:horario_comida,id',
                 'type' => 'required|in:1,2', // Asegura que el valor de 'type' sea 1 o 2
-                'time_start' => 'required|date_format:H:i',
-                'time_end' => 'required|date_format:H:i',
             ]);
 
             $horario_comida_id = $request->horario_comida_id;
-            HorarioComida::where('id', $horario_comida_id)->update([
-                'hora_inicio' => $request->time_start,
-                'hora_fin' => $request->time_end,
-            ]);
+            HorarioComida::where('id', $horario_comida_id);
             $type = $request->type;
 
             foreach ($request->array as $id) {
