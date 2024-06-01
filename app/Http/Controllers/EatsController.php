@@ -19,15 +19,17 @@ class EatsController extends Controller
             if (!$data) {
                 return response()->json(['message' => 'No se encontró el usuario'], 404);
             }
-            $data->load('almuerzos','almuerzos.horarioComida')
-                ->whereHas('almuerzos.horarioComida',function($query){
-                    $query->whereDate('fecha',now('America/Guayaquil')->toDateString());
-                })->select('id', 'nombre', 'apellido', 'numero_deportista');
+            $hasAlmuerzosHoy = $data->almuerzos()->whereHas('horarioComida', function($query) {
+                $query->whereDate('fecha', now('America/Guayaquil')->toDateString());
+            })->exists();
 
-            if ($data->almuerzos->isEmpty()) {
-                // No se encontraron almuerzos para el día actual
+            // Si no tiene almuerzos para el día actual, devolver un mensaje
+            if (!$hasAlmuerzosHoy) {
                 return response()->json(['message' => 'No se encontraron almuerzos para hoy'], 204);
             }
+
+            // Cargar las relaciones necesarias
+            $data->load('almuerzos.horarioComida');
             $dataProfile = [
                 'id' => $data->id ?? $data->invitado_id,
                 'cedula' => $data->cedula,
