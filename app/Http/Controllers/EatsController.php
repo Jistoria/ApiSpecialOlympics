@@ -29,7 +29,11 @@ class EatsController extends Controller
             }
 
             // Cargar las relaciones necesarias
-            $data->load('almuerzos.horarioComida');
+            $data->load(['almuerzos'=>function($query){
+                $query->whereHas('horarioComida',function($query){
+                    $query->whereDate('fecha',now('America/Guayaquil')->toDateString());
+                });
+            },'almuerzos.horarioComida']);
             $dataProfile = [
                 'id' => $data->id ?? $data->invitado_id,
                 'cedula' => $data->cedula,
