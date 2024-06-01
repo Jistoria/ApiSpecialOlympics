@@ -26,7 +26,7 @@ class EatsController extends Controller
 
             if ($data->almuerzos->isEmpty()) {
                 // No se encontraron almuerzos para el día actual
-                return response()->json(['message' => 'No se encontraron almuerzos para hoy'], 404);
+                return response()->json(['message' => 'No se encontraron almuerzos para hoy'], 204);
             }
             $dataProfile = [
                 'id' => $data->id ?? $data->invitado_id,
