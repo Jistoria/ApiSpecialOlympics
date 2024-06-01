@@ -21,7 +21,7 @@ class EatsController extends Controller
             }
             $data->load('almuerzos','almuerzos.horarioComida')
                 ->whereHas('almuerzos.horarioComida',function($query){
-                    $query->whereDate('fecha',now()->toDateString());
+                    $query->whereDate('fecha',now('America/Guayaquil')->toDateString());
                 })->select('id', 'nombre', 'apellido', 'numero_deportista');
 
             if ($data->almuerzos->isEmpty()) {
