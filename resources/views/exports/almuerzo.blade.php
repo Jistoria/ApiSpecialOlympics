@@ -47,7 +47,7 @@
                     <td>{{ $almuerzo->deportista->nombre }}</td>
                     <td>{{ $almuerzo->deportista->apellido }}</td>
                     <td>Atleta</td>
-                    <td>{{ $almuerzo->deportista->provincia->provincia }}</td>
+                    <td>{{ $almuerzo->deportista->provincia?->provincia ?? 'N/A' }}</td>
                 @endif
                 @if ($almuerzo->invitado)
                     <td>{{ $almuerzo->invitado->cedula }}</td>
