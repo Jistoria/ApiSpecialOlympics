@@ -54,7 +54,7 @@
                     <td>{{ $almuerzo->invitado->nombre }}</td>
                     <td>{{ $almuerzo->invitado->apellido }}</td>
                     <td>{{ $almuerzo->invitado->tipoInvitado->tipo_invitado_nombre }}</td>
-                    <td>{{ $almuerzo->invitado->provincia->provincia }}</td>
+                    <td>{{ $almuerzo->invitado->provincia?->provincia ?? 'N/A' }}</td>
                 @endif
                 <td>{{ $almuerzo->horarioComida->fecha }}</td>
                 <td>{{ $almuerzo->horarioComida->horario }}</td>
