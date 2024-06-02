@@ -98,8 +98,8 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
     Route::post('launch_export',[FilesController::class,'launchExport']);
 });
 
-Route::post('/export_guest',[FilesController::class,'exportGuest']);
-Route::post('/export_athlete',[FilesController::class,'exportAthlete']);
+Route::post('/exportg',[FilesController::class,'exportGuest']);
+Route::post('/expora',[FilesController::class,'exportAthlete']);
 
 //Rutas publicas
 Route::get('/athlete',[DataPublicController::class,'get_sportman']);
