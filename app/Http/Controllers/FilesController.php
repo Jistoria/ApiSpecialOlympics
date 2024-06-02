@@ -103,4 +103,22 @@ class FilesController extends Controller
         }
     }
 
+    public function exportGuest()
+    {
+        try{
+            return Excel::download(new \App\Exports\InvitadoExport, 'invitados.xlsx');
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'codigo'=>'500','message'=>$e->getMessage()],500);
+        }
+    }
+
+    public function exportAthlete()
+    {
+        try{
+            return Excel::download(new \App\Exports\AtletaExport, 'deportistas.xlsx');
+        }catch(\Exception $e){
+            return response()->json(['success'=>false,'codigo'=>'500','message'=>$e->getMessage()],500);
+        }
+    }
+
 }
