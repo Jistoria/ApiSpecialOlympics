@@ -13,8 +13,9 @@ class InvitadoExport implements FromView
     */
     public function view(): \Illuminate\Contracts\View\View
     {
+        $invitados = \App\Models\Invitado::with('tipoInvitado')->get();
         return view('exports.invitado', [
-            'invitados' => \App\Models\Invitado::with('tipoInvitado')->get()
+            'invitados' => $invitados
         ]);
     }
 }
