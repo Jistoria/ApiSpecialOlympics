@@ -106,7 +106,7 @@ class FilesController extends Controller
     public function exportGuest()
     {
         try{
-            return Excel::download(new \App\Exports\InvitadoExport, 'invitados.xlsx');
+            return Excel::download(new \App\Exports\InvitadoExport, 'invitados', \Maatwebsite\Excel\Excel::CSV);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'codigo'=>'500','message'=>$e->getMessage()],500);
         }
@@ -115,7 +115,7 @@ class FilesController extends Controller
     public function exportAthlete()
     {
         try{
-            return Excel::download(new \App\Exports\AtletaExport, 'deportistas.xlsx');
+            return Excel::download(new \App\Exports\AtletaExport, 'deportistas', \Maatwebsite\Excel\Excel::CSV);
         }catch(\Exception $e){
             return response()->json(['success'=>false,'codigo'=>'500','message'=>$e->getMessage()],500);
         }
