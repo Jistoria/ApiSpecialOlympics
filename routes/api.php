@@ -96,10 +96,10 @@ Route::middleware(['auth:sanctum','role:Administrador'])->prefix('dashboard')->g
     Route::get('credentials_athlete',[FilesController::class,'athleteCredentials']);
     Route::get('credentials_guest',[FilesController::class,'guestCredentials']);
     Route::post('launch_export',[FilesController::class,'launchExport']);
+    Route::post('athlete_export',[FilesController::class,'exportAthlete']);
+    Route::post('guest_export',[FilesController::class,'exportGuest']);
 });
 
-Route::post('/exportg',[FilesController::class,'exportGuest']);
-Route::post('/expora',[FilesController::class,'exportAthlete']);
 
 //Rutas publicas
 Route::get('/athlete',[DataPublicController::class,'get_sportman']);
